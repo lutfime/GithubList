@@ -114,7 +114,7 @@ class UserCell: UICollectionViewCell {
         imageView.image = UIImage(named: "emptyImage.jpg")
         nameLabel.text = user.loginName
         
-        if let notes = user.notes{
+        if let notes = user.notes, notes.count > 0{
             noteImageView.isHidden = false
         }else{
             noteImageView.isHidden = true
