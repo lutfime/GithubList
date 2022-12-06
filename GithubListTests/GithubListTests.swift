@@ -23,7 +23,7 @@ final class GithubListTests: XCTestCase {
         profileViewModel = ProfileViewModel(service: mockAPIClient)
         
         coreDataStack = TestCoreDataStack()
-        dataProvider = UsersProvider(managedObjectContext: coreDataStack.mainContext, coreDataStack: coreDataStack)
+        dataProvider = UsersProvider(coreDataStack: coreDataStack)
     }
 
     override func tearDownWithError() throws {
@@ -63,7 +63,7 @@ final class GithubListTests: XCTestCase {
     func testRootContextIsSavedAfterAddingUser() {
         expectation(
           forNotification: .NSManagedObjectContextDidSave,
-          object: coreDataStack.mainContext) { _ in
+          object: coreDataStack.backgroundContext) { _ in
             return true
         }
         

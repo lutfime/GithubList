@@ -44,7 +44,7 @@ class UsersProvider {
             do {
                 let results = try context.fetch(newUserFetch)
                 if results.isEmpty {
-                    self.add(user, context: context)
+                    self.add(user)
                 } else if let foundUser = results.first{
                     foundUser.update(user: user, includeNotes: includeNotes)
                     self.update(foundUser)
@@ -57,8 +57,8 @@ class UsersProvider {
     }
     
     @discardableResult
-    public func add(_ user:User, context: NSManagedObjectContext) -> UserManagedObject {
-        let userManagedObject = UserManagedObject(context: context)
+    public func add(_ user:User) -> UserManagedObject {
+        let userManagedObject = UserManagedObject(context: coreDataStack.backgroundContext)
         userManagedObject.update(user: user, includeNotes: true)
         coreDataStack.saveContext()
         return userManagedObject
