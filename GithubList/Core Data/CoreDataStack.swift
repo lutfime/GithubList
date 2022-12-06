@@ -8,7 +8,7 @@
 import CoreData
 import Foundation
 
-class CoreDataStack {
+class CoreDataStack: NSObject {
     public static let modelName = "GithubUsers"
 
     public static let model: NSManagedObjectModel = {
@@ -26,19 +26,24 @@ class CoreDataStack {
       }
       return container
     }()
-    
-    
 
     lazy var mainContext: NSManagedObjectContext = self.storeContainer.viewContext
+    lazy var backgroundContext: NSManagedObjectContext = {
+        let context = self.storeContainer.newBackgroundContext()
+        context.automaticallyMergesChangesFromParent = true
+        return context
+    }()
     
-    func saveContext() {
-        guard mainContext.hasChanges else {
-            return
-        }
-        do {
-            try mainContext.save()
-        } catch let error as NSError {
-            print("Unresolved error \(error), \(error.userInfo)")
+    @objc func saveContext() {
+        backgroundContext.performAndWait{
+            guard self.backgroundContext.hasChanges else {
+                return
+            }
+            do {
+                try self.backgroundContext.save()
+            } catch let error as NSError {
+                print("Unresolved error \(error), \(error.userInfo)")
+            }
         }
     }
 }

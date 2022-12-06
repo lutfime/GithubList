@@ -30,7 +30,7 @@ class ProfileViewModel: ObservableObject {
     private(set) var user: User!
     
     init(service: APIClientProtocol = APIClient(), coreDataStack: CoreDataStack = AppDelegate.shared.coreDataStack) {
-        self.dataProvider = UsersProvider(managedObjectContext: coreDataStack.mainContext, coreDataStack: coreDataStack)
+        self.dataProvider = UsersProvider(coreDataStack: coreDataStack)
         self.apiService = service
     }
     

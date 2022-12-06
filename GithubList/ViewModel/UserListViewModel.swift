@@ -30,7 +30,7 @@ class UserListViewModel: NSObject {
     
     init(service: APIClientProtocol = APIClient(), coreDataStack: CoreDataStack = AppDelegate.shared.coreDataStack) {
         self.apiService = service
-        self.dataProvider = UsersProvider(managedObjectContext: coreDataStack.mainContext, coreDataStack: coreDataStack)
+        self.dataProvider = UsersProvider(coreDataStack: coreDataStack)
         
         super.init()
         setupReachability()

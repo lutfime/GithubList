@@ -9,16 +9,12 @@ import CoreData
 import UIKit
 
 class UsersProvider {
-    
-    
-    // MARK: - Properties
-    let managedObjectContext: NSManagedObjectContext
+        // MARK: - Properties
     let coreDataStack: CoreDataStack
     weak var fetchedResultsControllerDelegate: NSFetchedResultsControllerDelegate?
 
     // MARK: - Initializers
-    public init(managedObjectContext: NSManagedObjectContext, coreDataStack: CoreDataStack) {
-      self.managedObjectContext = managedObjectContext
+    public init(coreDataStack: CoreDataStack) {
       self.coreDataStack = coreDataStack
     }
     
@@ -30,7 +26,7 @@ class UsersProvider {
             fetchRequest.predicate = predicate
         }
         do {
-            let results = try managedObjectContext.fetch(fetchRequest)
+            let results = try coreDataStack.mainContext.fetch(fetchRequest)
             return results
         } catch let error as NSError {
             print("Fetch error: \(error) description: \(error.userInfo)")
@@ -39,26 +35,30 @@ class UsersProvider {
     }
     
     func createOrUpdate(user: User, includeNotes: Bool = true) {
-        let userId = user.id
-        let newUserFetch: NSFetchRequest<UserManagedObject> = UserManagedObject.fetchRequest()
-        let userIDPredicate = NSPredicate(format: "%K == %i", #keyPath(UserManagedObject.userId), userId)
-        newUserFetch.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [userIDPredicate])
-        do {
-            let results = try managedObjectContext.fetch(newUserFetch)
-            if results.isEmpty {
-                self.add(user)
-            } else if let foundUser = results.first{
-                foundUser.update(user: user, includeNotes: includeNotes)
-                self.update(foundUser)
+        let context = coreDataStack.backgroundContext
+        context.perform {
+            let userId = user.id
+            let newUserFetch: NSFetchRequest<UserManagedObject> = UserManagedObject.fetchRequest()
+            let userIDPredicate = NSPredicate(format: "%K == %i", #keyPath(UserManagedObject.userId), userId)
+            newUserFetch.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [userIDPredicate])
+            do {
+                let results = try context.fetch(newUserFetch)
+                if results.isEmpty {
+                    self.add(user, context: context)
+                } else if let foundUser = results.first{
+                    foundUser.update(user: user, includeNotes: includeNotes)
+                    self.update(foundUser)
+                }
+            } catch let error as NSError {
+                print("Fetch error: \(error) description: \(error.userInfo)")
             }
-        } catch let error as NSError {
-            print("Fetch error: \(error) description: \(error.userInfo)")
         }
+        
     }
     
     @discardableResult
-    public func add(_ user:User) -> UserManagedObject {
-        let userManagedObject = UserManagedObject(context: managedObjectContext)
+    public func add(_ user:User, context: NSManagedObjectContext) -> UserManagedObject {
+        let userManagedObject = UserManagedObject(context: context)
         userManagedObject.update(user: user, includeNotes: true)
         coreDataStack.saveContext()
         return userManagedObject
