@@ -40,6 +40,7 @@
 		C1DDC8B8292EEF9D00BB101F /* userProfile.json in Resources */ = {isa = PBXBuildFile; fileRef = C1DDC8B6292EE5F300BB101F /* userProfile.json */; };
 		C1DDC8B9292EEF9F00BB101F /* users.json in Resources */ = {isa = PBXBuildFile; fileRef = C1DDC8B4292EE18C00BB101F /* users.json */; };
 		C1DDC8BB292EFD9300BB101F /* MockAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DDC8B2292EE15400BB101F /* MockAPIClient.swift */; };
+		C1FD891229EE0A3F00358E82 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD891129EE0A3F00358E82 /* HTTPClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		C1DDC8B2292EE15400BB101F /* MockAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAPIClient.swift; sourceTree = "<group>"; };
 		C1DDC8B4292EE18C00BB101F /* users.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = users.json; sourceTree = "<group>"; };
 		C1DDC8B6292EE5F300BB101F /* userProfile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userProfile.json; sourceTree = "<group>"; };
+		C1FD891129EE0A3F00358E82 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,8 +130,8 @@
 		C1C888D82925EE6D00FD832F /* GithubList */ = {
 			isa = PBXGroup;
 			children = (
-				C1DDC889292CF87E00BB101F /* Core Data */,
 				C1C888F02925F2B000FD832F /* Services */,
+				C1DDC889292CF87E00BB101F /* Core Data */,
 				C1C88900292B1F7800FD832F /* Utils */,
 				C1C888FD292B1D6800FD832F /* ViewModel */,
 				C1C888F8292B17D900FD832F /* View */,
@@ -151,6 +153,7 @@
 				C1C888F12925F2F100FD832F /* APILoader.swift */,
 				C1C8890A292B323300FD832F /* ImageLoader.swift */,
 				C1DDC8B2292EE15400BB101F /* MockAPIClient.swift */,
+				C1FD891129EE0A3F00358E82 /* HTTPClient.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 			files = (
 				C1DDC88F292CFF5100BB101F /* CoreDataStack.swift in Sources */,
 				C1DDC88D292CFD5100BB101F /* UserManagedObject.swift in Sources */,
+				C1FD891229EE0A3F00358E82 /* HTTPClient.swift in Sources */,
 				C1C888FC292B1C2C00FD832F /* UserCell.swift in Sources */,
 				C1C888FA292B1A2200FD832F /* UserListViewController.swift in Sources */,
 				C1DDC8BB292EFD9300BB101F /* MockAPIClient.swift in Sources */,
