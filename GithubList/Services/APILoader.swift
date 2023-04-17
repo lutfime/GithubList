@@ -17,7 +17,7 @@ protocol UserProfileFetcher{
 
 typealias APIClientProtocol = UsersFetcher & UserProfileFetcher
 
-class APIClient: UsersFetcher, UserProfileFetcher{
+class APILoader: UsersFetcher, UserProfileFetcher{
     
     var baseURL = "https://api.github.com/"
     
@@ -32,7 +32,7 @@ class APIClient: UsersFetcher, UserProfileFetcher{
     ///Fetch github users
     func fetchGithubUsers(startUserIndex: Int = 0, completion: @escaping (Result<[User], Error>) -> Void) {
         let url = URL(string: baseURL + "users?since=\(startUserIndex)")!
-        let task = APIClient.session.dataTask(with: url, completionHandler: { (data, response, error) in
+        let task = APILoader.session.dataTask(with: url, completionHandler: { (data, response, error) in
           if let error = error {
               DispatchQueue.main.async {
                   completion(.failure(error))
@@ -52,7 +52,7 @@ class APIClient: UsersFetcher, UserProfileFetcher{
     ///Fetch github user profile
     func fetchUserProfile(loginName: String, completion: @escaping (Result<User, Error>) -> Void) {
         let url = URL(string: baseURL + "users/\(loginName)")!
-        let task = APIClient.session.dataTask(with: url, completionHandler: { (data, response, error) in
+        let task = APILoader.session.dataTask(with: url, completionHandler: { (data, response, error) in
           if let error = error {
               DispatchQueue.main.async {
                   completion(.failure(error))
