@@ -12,7 +12,7 @@ protocol UsersFetcher {
 }
 
 protocol UserProfileFetcher{
-    func fetchUserProfile(loginName: String, completion: @escaping (Result<User, Error>) -> Void)
+    func loadUserProfile(loginName: String, completion: @escaping (Result<User, Error>) -> Void)
 }
 
 typealias APIClientProtocol = UsersFetcher & UserProfileFetcher
@@ -50,7 +50,7 @@ class APILoader: UsersFetcher, UserProfileFetcher{
     }
     
     ///Fetch github user profile
-    func fetchUserProfile(loginName: String, completion: @escaping (Result<User, Error>) -> Void) {
+    func loadUserProfile(loginName: String, completion: @escaping (Result<User, Error>) -> Void) {
         let url = URL(string: baseURL + "users/\(loginName)")!
         let task = APILoader.session.dataTask(with: url, completionHandler: { (data, response, error) in
           if let error = error {

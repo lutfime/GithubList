@@ -59,7 +59,7 @@ class ProfileViewModel: ObservableObject {
         
         //Load user profile
         state = .loading
-        apiService.fetchUserProfile(loginName: loginName) { result in
+        apiService.loadUserProfile(loginName: loginName) { result in
             switch result {
             case .success(let user):
                 if let foundUserCoreData{

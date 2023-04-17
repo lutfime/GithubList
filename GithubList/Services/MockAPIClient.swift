@@ -16,7 +16,7 @@ class MockAPIClient: APIClientProtocol {
         completion(.success(users))
     }
     
-    func fetchUserProfile(loginName: String, completion: @escaping (Result<User, Error>) -> Void) {
+    func loadUserProfile(loginName: String, completion: @escaping (Result<User, Error>) -> Void) {
         let pathString = Bundle(for: type(of: self)).path(forResource: "userProfile", ofType: "json")!
         let url = URL(fileURLWithPath: pathString)
         let jsonData = try! Data(contentsOf: url)
