@@ -8,7 +8,7 @@
 import UIKit
 
 class MockAPIClient: APIClientProtocol {
-    func fetchGithubUsers(startUserIndex: Int, completion: @escaping (Result<[User], Error>) -> Void) {
+    func loadGithubUsers(startUserIndex: Int, completion: @escaping (Result<[User], Error>) -> Void) {
         let pathString = Bundle(for: type(of: self)).path(forResource: "users", ofType: "json")!
         let url = URL(fileURLWithPath: pathString)
         let jsonData = try! Data(contentsOf: url)

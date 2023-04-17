@@ -8,7 +8,7 @@
 import UIKit
 
 protocol UsersFetcher {
-    func fetchGithubUsers(startUserIndex: Int, completion: @escaping (Result<[User], Error>) -> Void)
+    func loadGithubUsers(startUserIndex: Int, completion: @escaping (Result<[User], Error>) -> Void)
 }
 
 protocol UserProfileFetcher{
@@ -30,7 +30,7 @@ class APILoader: UsersFetcher, UserProfileFetcher{
     }()
     
     ///Fetch github users
-    func fetchGithubUsers(startUserIndex: Int = 0, completion: @escaping (Result<[User], Error>) -> Void) {
+    func loadGithubUsers(startUserIndex: Int = 0, completion: @escaping (Result<[User], Error>) -> Void) {
         let url = URL(string: baseURL + "users?since=\(startUserIndex)")!
         let task = APILoader.session.dataTask(with: url, completionHandler: { (data, response, error) in
           if let error = error {

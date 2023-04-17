@@ -70,7 +70,7 @@ class UserListViewModel: NSObject {
             startUserIndex = lastUser.id
         }
         //Load new data from API, then merge with core data
-        apiService.fetchGithubUsers(startUserIndex: startUserIndex) { result in
+        apiService.loadGithubUsers(startUserIndex: startUserIndex) { result in
             switch result {
             case .success(let users):
                 if nextPage{
