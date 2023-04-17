@@ -7,17 +7,17 @@
 
 import UIKit
 
-protocol UsersFetcher {
+protocol UsersLoader {
     func loadGithubUsers(startUserIndex: Int, completion: @escaping (Result<[User], Error>) -> Void)
 }
 
-protocol UserProfileFetcher{
+protocol UserProfileLoader{
     func loadUserProfile(loginName: String, completion: @escaping (Result<User, Error>) -> Void)
 }
 
-typealias APIClientProtocol = UsersFetcher & UserProfileFetcher
+typealias APIClientProtocol = UsersLoader & UserProfileLoader
 
-class APILoader: UsersFetcher, UserProfileFetcher{
+class APILoader: UsersLoader, UserProfileLoader{
     
     var baseURL = "https://api.github.com/"
     
