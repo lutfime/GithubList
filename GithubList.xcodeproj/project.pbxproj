@@ -166,7 +166,7 @@
 			children = (
 				C1FD893629EE59AA00358E82 /* Composition Root */,
 				C1C888F02925F2B000FD832F /* Services */,
-				C1DDC889292CF87E00BB101F /* Core Data */,
+				C1DDC889292CF87E00BB101F /* Cache */,
 				C1C88900292B1F7800FD832F /* Helpers */,
 				C1C888FD292B1D6800FD832F /* ViewModel */,
 				C1C888F8292B17D900FD832F /* View */,
@@ -261,7 +261,7 @@
 			path = "User Profile";
 			sourceTree = "<group>";
 		};
-		C1DDC889292CF87E00BB101F /* Core Data */ = {
+		C1DDC889292CF87E00BB101F /* Cache */ = {
 			isa = PBXGroup;
 			children = (
 				C1DDC88A292CF89400BB101F /* UsersCoreDataRepository.swift */,
@@ -269,7 +269,7 @@
 				C1DDC88E292CFF5100BB101F /* CoreDataStack.swift */,
 				C1FD892629EE3B6A00358E82 /* LocalLoader.swift */,
 			);
-			path = "Core Data";
+			path = Cache;
 			sourceTree = "<group>";
 		};
 		C1DDC894292DC27100BB101F /* Extension */ = {
