@@ -44,7 +44,12 @@ public class UsersLoaderComposite: UsersLoader{
         
         localLoader.loadGithubUsers(startUserIndex: startUserIndex) { result in
             localResult = result
-            completeWhenBothLoaderCompleted()
+            if remoteResult == nil{
+                //Complete with local result first
+                completion(result)
+            }else{
+                completeWhenBothLoaderCompleted()
+            }
         }
         remoteLoader.loadGithubUsers(startUserIndex: startUserIndex) { result in
             remoteResult = result
