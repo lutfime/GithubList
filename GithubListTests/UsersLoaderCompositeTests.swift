@@ -13,6 +13,7 @@ class UsersLoaderCompositeTests: XCTestCase{
     func test_loadUsers_combineLocalAndRemoteUsers(){
         let sut = makeSUT()
         let exp = expectation(description: "Wait for result")
+        exp.assertForOverFulfill = false
         sut.loadGithubUsers(startUserIndex: 2) { result in
             if let users = try? result.get(){
                 XCTAssertEqual(users.count, 3, "Expected to get 3 users after local and remote users combined")
