@@ -15,7 +15,7 @@ public protocol UserProfileLoader{
     func loadUserProfile(loginName: String, completion: @escaping (Result<User, Error>) -> Void)
 }
 
-public typealias APIClientProtocol = UsersLoader & UserProfileLoader
+public typealias UserAndProfileLoader = UsersLoader & UserProfileLoader
 
 public class APILoader: UsersLoader, UserProfileLoader{
     

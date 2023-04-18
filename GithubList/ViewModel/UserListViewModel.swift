@@ -13,7 +13,6 @@ public protocol EventDelegate: AnyObject {
     func handleInternetConnectionRestored()
 }
 
-
 public class UserListViewModel: NSObject {
     typealias Observer<T> = (T) -> Void
     
