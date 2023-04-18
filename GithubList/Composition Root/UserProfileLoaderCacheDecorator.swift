@@ -9,11 +9,11 @@ import Foundation
 
 public class UserProfileLoaderCacheDecorator: UserProfileLoader{
     private let loader: UserProfileLoader
-    private let dataProvider: UsersProvider
+    private let dataProvider: UsersCoreDataRepository
 
     public init(loader: UserProfileLoader, coreDataStack: CoreDataStack) {
         self.loader = loader
-        self.dataProvider = UsersProvider(coreDataStack: coreDataStack)
+        self.dataProvider = UsersCoreDataRepository(coreDataStack: coreDataStack)
     }
     
     public func loadUserProfile(loginName: String, completion: @escaping (Result<User, Error>) -> Void) {

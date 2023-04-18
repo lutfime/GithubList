@@ -8,7 +8,7 @@
 import CoreData
 import UIKit
 
-class UsersProvider {
+class UsersCoreDataRepository {
         // MARK: - Properties
     let coreDataStack: CoreDataStack
     weak var fetchedResultsControllerDelegate: NSFetchedResultsControllerDelegate?

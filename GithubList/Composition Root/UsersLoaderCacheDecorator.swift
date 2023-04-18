@@ -9,11 +9,11 @@ import Foundation
 
 public class UsersLoaderCacheDecorator: UsersLoader{
     private let loader: UsersLoader
-    private let dataProvider: UsersProvider
+    private let dataProvider: UsersCoreDataRepository
 
     public init(loader: UsersLoader, coreDataStack: CoreDataStack) {
         self.loader = loader
-        self.dataProvider = UsersProvider(coreDataStack: coreDataStack)
+        self.dataProvider = UsersCoreDataRepository(coreDataStack: coreDataStack)
     }
     
     public func loadGithubUsers(startUserIndex: Int, completion: @escaping (Result<[User], Error>) -> Void) {

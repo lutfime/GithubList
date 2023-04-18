@@ -9,10 +9,10 @@ import Foundation
 import CoreData
 
 class LocalLoader: UsersLoader, UserProfileLoader{
-    private let dataProvider: UsersProvider
+    private let dataProvider: UsersCoreDataRepository
 
     init(coreDataStack: CoreDataStack) {
-        self.dataProvider = UsersProvider(coreDataStack: coreDataStack)
+        self.dataProvider = UsersCoreDataRepository(coreDataStack: coreDataStack)
     }
     
     func loadGithubUsers(startUserIndex: Int, completion: @escaping (Result<[User], Error>) -> Void) {

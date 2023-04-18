@@ -13,7 +13,7 @@ final class GithubListTests: XCTestCase {
     var userListViewModel: UserListViewModel!
     var profileViewModel: ProfileViewModel!
     
-    var dataProvider: UsersProvider!
+    var dataProvider: UsersCoreDataRepository!
     var coreDataStack: CoreDataStack!
 
     override func setUpWithError() throws {
@@ -24,7 +24,7 @@ final class GithubListTests: XCTestCase {
         
         let inMemoryStoreURL = URL(fileURLWithPath: "/dev/null")
         coreDataStack = try! CoreDataStack(storeURL: inMemoryStoreURL)
-        dataProvider = UsersProvider(coreDataStack: coreDataStack)
+        dataProvider = UsersCoreDataRepository(coreDataStack: coreDataStack)
     }
 
     override func tearDownWithError() throws {

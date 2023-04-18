@@ -53,7 +53,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let compositeLoader = UserProfileLoaderComposite(remoteLoader: remoteLoader, localLoader: localLoader)
         
         let profileView = UserProfileUIComposer.userProfileComposedWith(loader: compositeLoader, viewModel: viewModel) {[coreDataStack] user in
-            let userProvider = UsersProvider(coreDataStack: coreDataStack)
+            let userProvider = UsersCoreDataRepository(coreDataStack: coreDataStack)
             userProvider.createOrUpdate(user: user)
             userProvider.coreDataStack.saveContext()
         }

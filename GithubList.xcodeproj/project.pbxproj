@@ -27,7 +27,7 @@
 		C1C88919292C3F7D00FD832F /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C88918292C3F7D00FD832F /* UserProfileView.swift */; };
 		C1C8891B292C77FC00FD832F /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C8891A292C77FC00FD832F /* ProfileViewModel.swift */; };
 		C1DDC888292CD32F00BB101F /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DDC887292CD32F00BB101F /* UserProfileViewModel.swift */; };
-		C1DDC88B292CF89400BB101F /* UsersProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DDC88A292CF89400BB101F /* UsersProvider.swift */; };
+		C1DDC88B292CF89400BB101F /* UsersCoreDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DDC88A292CF89400BB101F /* UsersCoreDataRepository.swift */; };
 		C1DDC88D292CFD5100BB101F /* UserManagedObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DDC88C292CFD5100BB101F /* UserManagedObject.swift */; };
 		C1DDC88F292CFF5100BB101F /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DDC88E292CFF5100BB101F /* CoreDataStack.swift */; };
 		C1DDC892292DC1F800BB101F /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DDC891292DC1F700BB101F /* Reachability.swift */; };
@@ -93,7 +93,7 @@
 		C1C88918292C3F7D00FD832F /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		C1C8891A292C77FC00FD832F /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		C1DDC887292CD32F00BB101F /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
-		C1DDC88A292CF89400BB101F /* UsersProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersProvider.swift; sourceTree = "<group>"; };
+		C1DDC88A292CF89400BB101F /* UsersCoreDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersCoreDataRepository.swift; sourceTree = "<group>"; };
 		C1DDC88C292CFD5100BB101F /* UserManagedObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagedObject.swift; sourceTree = "<group>"; };
 		C1DDC88E292CFF5100BB101F /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		C1DDC891292DC1F700BB101F /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -264,7 +264,7 @@
 		C1DDC889292CF87E00BB101F /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
-				C1DDC88A292CF89400BB101F /* UsersProvider.swift */,
+				C1DDC88A292CF89400BB101F /* UsersCoreDataRepository.swift */,
 				C1DDC88C292CFD5100BB101F /* UserManagedObject.swift */,
 				C1DDC88E292CFF5100BB101F /* CoreDataStack.swift */,
 				C1FD892629EE3B6A00358E82 /* LocalLoader.swift */,
@@ -497,7 +497,7 @@
 				C1C8891B292C77FC00FD832F /* ProfileViewModel.swift in Sources */,
 				C1FD893929EE5A9B00358E82 /* UserListUIComposer.swift in Sources */,
 				C1C88903292B1F8F00FD832F /* RequestDelegate.swift in Sources */,
-				C1DDC88B292CF89400BB101F /* UsersProvider.swift in Sources */,
+				C1DDC88B292CF89400BB101F /* UsersCoreDataRepository.swift in Sources */,
 				C1DDC892292DC1F800BB101F /* Reachability.swift in Sources */,
 				C1C88913292B619900FD832F /* LoadingIndicatorCell.swift in Sources */,
 				C1C888DC2925EE6D00FD832F /* SceneDelegate.swift in Sources */,
