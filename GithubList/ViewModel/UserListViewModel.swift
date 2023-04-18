@@ -9,13 +9,13 @@ import UIKit
 import CoreData
 
 public protocol EventDelegate: AnyObject {
-    func handleDataDidUpdate()
     func handleNoInternetConnection()
     func handleInternetConnectionRestored()
 }
 
 
 public class UserListViewModel: NSObject {
+    typealias Observer<T> = (T) -> Void
     
     public weak var delegate: EventDelegate?
 
@@ -27,6 +27,8 @@ public class UserListViewModel: NSObject {
     private(set) var filteredUserViewModels = [UserCellViewModel]()
     private var isLoading = false
     let reachability = try! Reachability()
+    
+    var onListLoad: Observer<[UserCellViewModel]>?
     
     public init(service: APIClientProtocol = APILoader(client: URLSessionHTTPClient()), coreDataStack: CoreDataStack = AppDelegate.shared.coreDataStack) {
         self.apiService = service
@@ -98,7 +100,7 @@ public class UserListViewModel: NSObject {
     func updateFilteredUsers(with key: String!){
         filterKey = key
         self.filteredUserViewModels = getFilteredUserViewModels(filterKey: key)
-        delegate?.handleDataDidUpdate()
+        onListLoad?(self.filteredUserViewModels)
     }
     
     

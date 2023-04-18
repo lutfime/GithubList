@@ -30,7 +30,6 @@ class UserListSnapshotTests: XCTestCase {
         controller.collectionView.showsHorizontalScrollIndicator = false
         
         controller.viewModel.loadData()
-        controller.viewModel.delegate?.handleDataDidUpdate()
         
         RunLoop.current.run(until: Date())
         

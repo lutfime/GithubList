@@ -36,6 +36,7 @@ public class UserListViewController: UIViewController, UICollectionViewDelegate,
     public override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        bind()
         viewModel.loadLocalData()
         viewModel.loadData()
         title = "User List"
@@ -46,7 +47,6 @@ public class UserListViewController: UIViewController, UICollectionViewDelegate,
         if selectedIndexPath != nil{
             //If selectedIndexPath not nil, it means that the indexPath has been selected. Reload collection view because data such as notes etc might be updated 
             viewModel.updateFilteredUsers(with: searchBar.text)
-            updateCollectionViewSnapshot()
         }
     }
     
@@ -60,6 +60,12 @@ public class UserListViewController: UIViewController, UICollectionViewDelegate,
         searchBar.delegate = self
     }
     
+    func bind(){
+        viewModel.onListLoad = {[weak self] users in
+            self?.loadingIndicatorCell?.stopIndicatorAnimation()
+            self?.display(users)
+        }
+    }
     
     // MARK:  Configure Collection View
     
@@ -122,15 +128,12 @@ public class UserListViewController: UIViewController, UICollectionViewDelegate,
             }
             return registrationView
         }
-        updateCollectionViewSnapshot()
-        
     }
     
-    func updateCollectionViewSnapshot(animate: Bool = false){
+    func display(_ users: [UserCellViewModel], animate: Bool = false){
         currentSnapshot = NSDiffableDataSourceSnapshot<Int, UserCellViewModel>()
         currentSnapshot.appendSections([0])
-        let models = viewModel.filteredUserViewModels
-        currentSnapshot.appendItems(models)
+        currentSnapshot.appendItems(users)
         
         self.dataSource.apply(self.currentSnapshot, animatingDifferences: animate)
         selectedIndexPath = nil
@@ -168,11 +171,6 @@ public class UserListViewController: UIViewController, UICollectionViewDelegate,
     }
     
     // MARK: Event delegate
-    
-    public func handleDataDidUpdate() {
-        loadingIndicatorCell?.stopIndicatorAnimation()
-        updateCollectionViewSnapshot(animate: true)
-    }
     
     public func handleNoInternetConnection() {
         bottomInfoView.showInfo("No Internet Connection", in: view, color: UIColor.red)
