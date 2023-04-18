@@ -165,7 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				C1FD893629EE59AA00358E82 /* Composition Root */,
-				C1C888F02925F2B000FD832F /* Services */,
+				C1C888F02925F2B000FD832F /* API */,
 				C1DDC889292CF87E00BB101F /* Cache */,
 				C1C88900292B1F7800FD832F /* Helpers */,
 				C1C888FD292B1D6800FD832F /* ViewModel */,
@@ -182,7 +182,7 @@
 			path = GithubList;
 			sourceTree = "<group>";
 		};
-		C1C888F02925F2B000FD832F /* Services */ = {
+		C1C888F02925F2B000FD832F /* API */ = {
 			isa = PBXGroup;
 			children = (
 				C1C888F12925F2F100FD832F /* APILoader.swift */,
@@ -191,7 +191,7 @@
 				C1FD891129EE0A3F00358E82 /* HTTPClient.swift */,
 				C1FD891329EE295000358E82 /* URLSessionHTTPClient.swift */,
 			);
-			path = Services;
+			path = API;
 			sourceTree = "<group>";
 		};
 		C1C888F3292615AB00FD832F /* Model */ = {
