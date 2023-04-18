@@ -114,27 +114,6 @@ public class UserListViewModel: NSObject {
         onListLoad?(filtered)
     }
     
-    ///Get filtered user view models from core data
-    func getFilteredUserViewModels(filterKey: String! = nil) -> [UserCellViewModel]{
-        guard let userManagedObjects = dataProvider.getUsers(filterKey: filterKey) else{
-            return []
-        }
-        var models = [UserCellViewModel]()
-        for object in userManagedObjects {
-            models.append(createCellModel(user: object))
-        }
-        return models
-    }
-    
-    func createCellModel(user: UserManagedObject) -> UserCellViewModel {
-        var model = UserCellViewModel()
-        model.loginName = user.loginName
-        model.avatarURL = user.avatarURL
-        model.profileURL = user.profileURL
-        model.notes = user.notes
-        return model
-    }
-    
     ///Check if the data is being filtered
     func isBeingFiltered() -> Bool{
         if let filterKey, filterKey.count > 0{
