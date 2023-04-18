@@ -10,7 +10,7 @@ import CoreData
 
 class ProfileViewModel: ObservableObject {
     
-    private let apiService: UserAndProfileLoader
+    private let apiService: UserProfileLoader
     private let dataProvider: UsersProvider
     
     weak var delegate: RequestDelegate?
@@ -29,7 +29,7 @@ class ProfileViewModel: ObservableObject {
     @Published var userProfileViewModel: UserProfileViewModel!
     private(set) var user: User!
     
-    init(service: UserAndProfileLoader = APILoader(client: URLSessionHTTPClient()), coreDataStack: CoreDataStack = AppDelegate.shared.coreDataStack) {
+    init(service: UserProfileLoader = APILoader(client: URLSessionHTTPClient()), coreDataStack: CoreDataStack = AppDelegate.shared.coreDataStack) {
         self.dataProvider = UsersProvider(coreDataStack: coreDataStack)
         self.apiService = service
     }

@@ -54,6 +54,7 @@
 		C1FD893329EE51F800358E82 /* SharedHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD893229EE51F800358E82 /* SharedHelpers.swift */; };
 		C1FD893529EE56F900358E82 /* UsersLoaderCacheDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD893429EE56F900358E82 /* UsersLoaderCacheDecorator.swift */; };
 		C1FD893929EE5A9B00358E82 /* UserListUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD893829EE5A9B00358E82 /* UserListUIComposer.swift */; };
+		C1FD893B29EE5F9100358E82 /* UserProfileLoaderComposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD893A29EE5F9100358E82 /* UserProfileLoaderComposite.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +116,7 @@
 		C1FD893229EE51F800358E82 /* SharedHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedHelpers.swift; sourceTree = "<group>"; };
 		C1FD893429EE56F900358E82 /* UsersLoaderCacheDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersLoaderCacheDecorator.swift; sourceTree = "<group>"; };
 		C1FD893829EE5A9B00358E82 /* UserListUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListUIComposer.swift; sourceTree = "<group>"; };
+		C1FD893A29EE5F9100358E82 /* UserProfileLoaderComposite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileLoaderComposite.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -337,6 +339,7 @@
 				C1FD893729EE5A8900358E82 /* Composer */,
 				C1FD893429EE56F900358E82 /* UsersLoaderCacheDecorator.swift */,
 				C1FD892829EE40AA00358E82 /* UsersLoaderComposite.swift */,
+				C1FD893A29EE5F9100358E82 /* UserProfileLoaderComposite.swift */,
 			);
 			path = "Composition Root";
 			sourceTree = "<group>";
@@ -465,6 +468,7 @@
 				C1DDC8BB292EFD9300BB101F /* MockAPIClient.swift in Sources */,
 				C1DDC898292DC2BC00BB101F /* BottomInfoView.swift in Sources */,
 				C1C8890E292B36FC00FD832F /* UIImageView+Load.swift in Sources */,
+				C1FD893B29EE5F9100358E82 /* UserProfileLoaderComposite.swift in Sources */,
 				C1FD891429EE295000358E82 /* URLSessionHTTPClient.swift in Sources */,
 				C1C8890B292B323300FD832F /* ImageLoader.swift in Sources */,
 				C1C88910292B3E1F00FD832F /* UIImage+Invert.swift in Sources */,
