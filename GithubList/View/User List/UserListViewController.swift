@@ -29,8 +29,10 @@ public class UserListViewController: UIViewController, UICollectionViewDelegate,
     }
     
     required init?(coder: NSCoder) {
-        let localLoader = LocalLoader(coreDataStack: AppDelegate.shared.coreDataStack)
-        let compositeLoader = UsersLoaderComposite(localLoader: localLoader, remoteLoader: APILoader(client: URLSessionHTTPClient()))
+        let coreDataStack = AppDelegate.shared.coreDataStack
+        let localLoader = LocalLoader(coreDataStack: coreDataStack)
+        let remoteLoader = APILoader(client: URLSessionHTTPClient()).cachingTo(coreDataStack)
+        let compositeLoader = UsersLoaderComposite(localLoader: localLoader, remoteLoader: remoteLoader)
         self.viewModel = UserListViewModel(loader: compositeLoader)
         
         super.init(coder: coder)

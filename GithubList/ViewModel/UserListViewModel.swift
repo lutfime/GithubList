@@ -74,12 +74,6 @@ public class UserListViewModel: NSObject {
                 }else{
                     self.users = users
                 }
-                //Merge data from API or create new one if not available in core data. Do not save not because load only available locally from core data
-//                for user in users{
-//                    self.dataProvider.createOrUpdate(user: user, includeNotes: false)
-//                }
-                //Save core data
-//                self.dataProvider.coreDataStack.saveContext()
                 self.userViewModels = users.map({$0.toCellModel()})
                 self.updateFilteredUsers(with: self.filterKey)
                 self.isLoading = false
