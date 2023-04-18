@@ -70,7 +70,9 @@ public class UserListViewModel: NSObject {
             startUserIndex = lastUser.id
         }
         //Load new data from API, then merge with core data
-        apiService.loadGithubUsers(startUserIndex: startUserIndex) { result in
+        apiService.loadGithubUsers(startUserIndex: startUserIndex) {[weak self] result in
+            guard let self else {return}
+            
             switch result {
             case .success(let users):
                 if nextPage{
@@ -83,7 +85,7 @@ public class UserListViewModel: NSObject {
                     self.dataProvider.createOrUpdate(user: user, includeNotes: false)
                 }
                 //Save core data
-                AppDelegate.shared.coreDataStack.saveContext()
+                self.dataProvider.coreDataStack.saveContext()
                 self.updateFilteredUsers(with: self.filterKey)
                 self.isLoading = false
             case .failure(let _):

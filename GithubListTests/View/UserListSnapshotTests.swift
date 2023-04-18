@@ -12,8 +12,6 @@ class UserListSnapshotTests: XCTestCase {
 
     func test_ListUser() {
         let sut = makeSUT()
-//        sut.display(emptyList())
-
         assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "LIST_USER_VC_normal")
     }
 
