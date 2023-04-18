@@ -37,10 +37,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func showUserProfile(_ viewModel: UserCellViewModel){
         let coreDataStack = AppDelegate.shared.coreDataStack
         let localLoader = LocalLoader(coreDataStack: coreDataStack)
-        let remoteLoader = APILoader(client: URLSessionHTTPClient())
+        let remoteLoader = APILoader(client: URLSessionHTTPClient()).cachingUserProfileTo(coreDataStack)
         let compositeLoader = UserProfileLoaderComposite(remoteLoader: remoteLoader, localLoader: localLoader)
         
-        let profileView = UserProfileUIComposer.userProfileComposedWith(loader: compositeLoader, viewModel: viewModel)
+        let profileView = UserProfileUIComposer.userProfileComposedWith(loader: compositeLoader, viewModel: viewModel) { user in
+            let userProvider = UsersProvider(coreDataStack: coreDataStack)
+            userProvider.createOrUpdate(user: user)
+            userProvider.coreDataStack.saveContext()
+        }
         navigationController.pushViewController(profileView, animated: true)
     }
 

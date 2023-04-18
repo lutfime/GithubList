@@ -10,13 +10,14 @@ import SwiftUI
 class UserProfileUIComposer{
     public static func userProfileComposedWith(
         loader: UserProfileLoader,
-        viewModel: UserCellViewModel
+        viewModel: UserCellViewModel,
+        saveUser: @escaping (User) -> ()
     ) -> UIHostingController<UserProfileView> {
         let model = ProfileViewModel(service: MainQueueDispatchDecorator(decoratee: loader))
         var profileView = UserProfileView(viewModel: model)
         profileView.loginName = viewModel.loginName
         profileView.avatarURL = viewModel.avatarURL
-
+        profileView.viewModel.onUserNeedSave = saveUser
         let vc = UIHostingController(rootView: profileView)
         return vc
     }

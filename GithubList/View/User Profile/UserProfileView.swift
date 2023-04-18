@@ -12,6 +12,7 @@ struct UserProfileView: View {
     var avatarURL: String!
     
     let viewModel: ProfileViewModel
+    
     @State var userProfileViewModel = UserProfileViewModel()
     @State var notes = ""
     @State var title = "Profile"

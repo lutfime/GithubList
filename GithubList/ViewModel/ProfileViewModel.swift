@@ -12,6 +12,7 @@ class ProfileViewModel: ObservableObject {
     
     private let apiService: UserProfileLoader
     private let dataProvider: UsersProvider
+    var onUserNeedSave: ((User) -> ())?
     
     weak var delegate: RequestDelegate?
     private var state: ViewState = .idle {
@@ -49,9 +50,7 @@ class ProfileViewModel: ObservableObject {
             case .success(let user):
                 self.user = user
                 self.userProfileViewModel = self.getUserProfileViewModel(user: user)
-//                self.dataProvider.createOrUpdate(user: user)
-//                //Save core data
-//                AppDelegate.shared.coreDataStack.saveContext()
+
                 self.state = .success
             case .failure(let error):
                 self.state = .error(error)
@@ -61,9 +60,8 @@ class ProfileViewModel: ObservableObject {
     
     func saveNotes(_ notes: String) {
         if let user{
-            print(notes)
             user.notes = notes
-            dataProvider.createOrUpdate(user: user)
+            onUserNeedSave?(user)
         }
     }
     
