@@ -77,7 +77,7 @@ public class UserListViewModel: NSObject {
                 self.userViewModels = users.map({$0.toCellModel()})
                 self.updateFilteredUsers(with: self.filterKey)
                 self.isLoading = false
-            case .failure(let _):
+            case .failure:
                 self.isLoading = false
             }
         }
@@ -87,7 +87,7 @@ public class UserListViewModel: NSObject {
     public func updateFilteredUsers(with key: String!){
         filterKey = key
         var filtered = userViewModels
-        if let filterKey = filterKey?.lowercased(){
+        if let filterKey = filterKey?.lowercased(), filterKey.count > 0{
             filtered = userViewModels.filter { user in
                 if user.loginName.lowercased().contains(filterKey){
                     return true
