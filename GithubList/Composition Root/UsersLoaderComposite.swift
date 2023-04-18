@@ -30,14 +30,10 @@ public class UsersLoaderComposite: UsersLoader{
             if let localResult, let remoteResult{
                 do{
                     let users = combineUsers(try localResult.get(), remoteUsers: try remoteResult.get())
-                    DispatchQueue.main.async {
-                        completion(.success(users))
-                    }
+                    completion(.success(users))
                 }
                 catch{
-                    DispatchQueue.main.async {
-                        completion(.failure(error))
-                    }
+                    completion(.failure(error))
                 }
             }
         }
