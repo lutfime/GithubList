@@ -34,7 +34,11 @@ public class UsersLoaderCacheDecorator: UsersLoader{
 }
 
 extension APILoader{
-    func cachingTo(_ coreDataStack: CoreDataStack) -> UsersLoader{
+    func cachingUserListTo(_ coreDataStack: CoreDataStack) -> UsersLoader{
         return UsersLoaderCacheDecorator(loader: self, coreDataStack: coreDataStack)
     }
+//    
+//    func cachingUserProfileTo(_ coreDataStack: CoreDataStack) -> UsersLoader{
+////        return UsersLoaderCacheDecorator(loader: self, coreDataStack: coreDataStack)
+//    }
 }
