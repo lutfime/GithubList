@@ -16,7 +16,7 @@ class UserListUIComposer{
         let bundle = Bundle(for: UserListViewController.self)
         let storyboard = UIStoryboard(name: "Main", bundle: bundle)
         let controller = storyboard.instantiateViewController(identifier: "userList") { coder in
-            let viewModel = UserListViewModel(loader: loader)
+            let viewModel = UserListViewModel(loader: MainQueueDispatchDecorator(decoratee: loader))
             return UserListViewController(coder: coder, viewModel: viewModel)
         } as! UserListViewController
         controller.selection = selection
