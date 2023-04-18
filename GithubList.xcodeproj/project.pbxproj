@@ -46,6 +46,7 @@
 		C1FD891C29EE2CFE00358E82 /* XCTestCase+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD891B29EE2CFE00358E82 /* XCTestCase+Snapshot.swift */; };
 		C1FD891E29EE2D2200358E82 /* UIViewController+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD891D29EE2D2200358E82 /* UIViewController+Snapshot.swift */; };
 		C1FD892129EE36F200358E82 /* snapshots in Resources */ = {isa = PBXBuildFile; fileRef = C1FD892029EE36F200358E82 /* snapshots */; };
+		C1FD892729EE3B6A00358E82 /* LocalLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD892629EE3B6A00358E82 /* LocalLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,7 @@
 		C1FD891B29EE2CFE00358E82 /* XCTestCase+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Snapshot.swift"; sourceTree = "<group>"; };
 		C1FD891D29EE2D2200358E82 /* UIViewController+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Snapshot.swift"; sourceTree = "<group>"; };
 		C1FD892029EE36F200358E82 /* snapshots */ = {isa = PBXFileReference; lastKnownFileType = folder; path = snapshots; sourceTree = "<group>"; };
+		C1FD892629EE3B6A00358E82 /* LocalLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,6 +244,7 @@
 				C1DDC88C292CFD5100BB101F /* UserManagedObject.swift */,
 				C1DDC88E292CFF5100BB101F /* CoreDataStack.swift */,
 				C1DDC8AE292DE6BB00BB101F /* TestCoreDataStack.swift */,
+				C1FD892629EE3B6A00358E82 /* LocalLoader.swift */,
 			);
 			path = "Core Data";
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 				C1C88905292B282800FD832F /* UserCellViewModel.swift in Sources */,
 				C1C888F5292615CE00FD832F /* User.swift in Sources */,
 				C1C888DA2925EE6D00FD832F /* AppDelegate.swift in Sources */,
+				C1FD892729EE3B6A00358E82 /* LocalLoader.swift in Sources */,
 				C1C88919292C3F7D00FD832F /* UserProfileView.swift in Sources */,
 				C1C888F22925F2F100FD832F /* APILoader.swift in Sources */,
 				C1C8891B292C77FC00FD832F /* ProfileViewModel.swift in Sources */,
