@@ -161,6 +161,7 @@ public class UserListViewController: UIViewController, UICollectionViewDelegate,
         guard let model = self.dataSource.itemIdentifier(for: indexPath) else{
             return
         }
+        selectedIndexPath = indexPath
         selection?(model)
     }
     
