@@ -264,9 +264,7 @@
 		C1DDC889292CF87E00BB101F /* Cache */ = {
 			isa = PBXGroup;
 			children = (
-				C1DDC88A292CF89400BB101F /* UsersCoreDataRepository.swift */,
-				C1DDC88C292CFD5100BB101F /* UserManagedObject.swift */,
-				C1DDC88E292CFF5100BB101F /* CoreDataStack.swift */,
+				C1FD894529EF5B1C00358E82 /* Infra */,
 				C1FD892629EE3B6A00358E82 /* LocalLoader.swift */,
 			);
 			path = Cache;
@@ -359,6 +357,16 @@
 				C1FD893F29EE773D00358E82 /* UserProfileUIComposer.swift */,
 			);
 			path = Composer;
+			sourceTree = "<group>";
+		};
+		C1FD894529EF5B1C00358E82 /* Infra */ = {
+			isa = PBXGroup;
+			children = (
+				C1DDC88A292CF89400BB101F /* UsersCoreDataRepository.swift */,
+				C1DDC88C292CFD5100BB101F /* UserManagedObject.swift */,
+				C1DDC88E292CFF5100BB101F /* CoreDataStack.swift */,
+			);
+			path = Infra;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
