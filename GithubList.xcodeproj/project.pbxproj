@@ -49,6 +49,8 @@
 		C1FD892729EE3B6A00358E82 /* LocalLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD892629EE3B6A00358E82 /* LocalLoader.swift */; };
 		C1FD892929EE40AA00358E82 /* UsersLoaderComposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD892829EE40AA00358E82 /* UsersLoaderComposite.swift */; };
 		C1FD892B29EE452600358E82 /* UsersLoaderCompositeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD892A29EE452600358E82 /* UsersLoaderCompositeTests.swift */; };
+		C1FD892E29EE492B00358E82 /* UserListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD892D29EE492B00358E82 /* UserListViewModelTests.swift */; };
+		C1FD893129EE49D300358E82 /* UsersLoaderStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD893029EE49D300358E82 /* UsersLoaderStub.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +107,8 @@
 		C1FD892629EE3B6A00358E82 /* LocalLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalLoader.swift; sourceTree = "<group>"; };
 		C1FD892829EE40AA00358E82 /* UsersLoaderComposite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersLoaderComposite.swift; sourceTree = "<group>"; };
 		C1FD892A29EE452600358E82 /* UsersLoaderCompositeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersLoaderCompositeTests.swift; sourceTree = "<group>"; };
+		C1FD892D29EE492B00358E82 /* UserListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewModelTests.swift; sourceTree = "<group>"; };
+		C1FD893029EE49D300358E82 /* UsersLoaderStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersLoaderStub.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -274,6 +278,8 @@
 		C1DDC8A4292DE23A00BB101F /* GithubListTests */ = {
 			isa = PBXGroup;
 			children = (
+				C1FD892F29EE49BC00358E82 /* Helpers */,
+				C1FD892C29EE48C900358E82 /* ViewModel */,
 				C1FD891729EE2CBD00358E82 /* View */,
 				C1DDC8B6292EE5F300BB101F /* userProfile.json */,
 				C1DDC8B4292EE18C00BB101F /* users.json */,
@@ -298,6 +304,22 @@
 			children = (
 				C1FD891B29EE2CFE00358E82 /* XCTestCase+Snapshot.swift */,
 				C1FD891D29EE2D2200358E82 /* UIViewController+Snapshot.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		C1FD892C29EE48C900358E82 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C1FD892D29EE492B00358E82 /* UserListViewModelTests.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C1FD892F29EE49BC00358E82 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C1FD893029EE49D300358E82 /* UsersLoaderStub.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -445,8 +467,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1FD891C29EE2CFE00358E82 /* XCTestCase+Snapshot.swift in Sources */,
+				C1FD893129EE49D300358E82 /* UsersLoaderStub.swift in Sources */,
 				C1FD891929EE2CD200358E82 /* UserListSnapshotTests.swift in Sources */,
 				C1FD892B29EE452600358E82 /* UsersLoaderCompositeTests.swift in Sources */,
+				C1FD892E29EE492B00358E82 /* UserListViewModelTests.swift in Sources */,
 				C1FD891E29EE2D2200358E82 /* UIViewController+Snapshot.swift in Sources */,
 				C1DDC8A6292DE23A00BB101F /* GithubListTests.swift in Sources */,
 			);

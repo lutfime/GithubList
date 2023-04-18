@@ -44,17 +44,3 @@ class UsersLoaderCompositeTests: XCTestCase{
     }
     
 }
-
-class UsersLoaderStub: UsersLoader{
-    let users: [User]
-    
-    init(users: [User]) {
-        self.users = users
-    }
-    
-    func loadGithubUsers(startUserIndex: Int, completion: @escaping (Result<[GithubList.User], Error>) -> Void) {
-        completion(.success(users))
-    }
-    
-    
-}
