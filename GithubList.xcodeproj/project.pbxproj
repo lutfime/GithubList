@@ -55,6 +55,7 @@
 		C1FD893529EE56F900358E82 /* UsersLoaderCacheDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD893429EE56F900358E82 /* UsersLoaderCacheDecorator.swift */; };
 		C1FD893929EE5A9B00358E82 /* UserListUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD893829EE5A9B00358E82 /* UserListUIComposer.swift */; };
 		C1FD893B29EE5F9100358E82 /* UserProfileLoaderComposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD893A29EE5F9100358E82 /* UserProfileLoaderComposite.swift */; };
+		C1FD893E29EE61F900358E82 /* User+ProfileCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD893D29EE61F900358E82 /* User+ProfileCheck.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +118,7 @@
 		C1FD893429EE56F900358E82 /* UsersLoaderCacheDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersLoaderCacheDecorator.swift; sourceTree = "<group>"; };
 		C1FD893829EE5A9B00358E82 /* UserListUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListUIComposer.swift; sourceTree = "<group>"; };
 		C1FD893A29EE5F9100358E82 /* UserProfileLoaderComposite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileLoaderComposite.swift; sourceTree = "<group>"; };
+		C1FD893D29EE61F900358E82 /* User+ProfileCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+ProfileCheck.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,7 +163,7 @@
 				C1FD893629EE59AA00358E82 /* Composition Root */,
 				C1C888F02925F2B000FD832F /* Services */,
 				C1DDC889292CF87E00BB101F /* Core Data */,
-				C1C88900292B1F7800FD832F /* Utils */,
+				C1C88900292B1F7800FD832F /* Helpers */,
 				C1C888FD292B1D6800FD832F /* ViewModel */,
 				C1C888F8292B17D900FD832F /* View */,
 				C1C888F3292615AB00FD832F /* Model */,
@@ -217,13 +219,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		C1C88900292B1F7800FD832F /* Utils */ = {
+		C1C88900292B1F7800FD832F /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				C1FD893D29EE61F900358E82 /* User+ProfileCheck.swift */,
 				C1DDC894292DC27100BB101F /* Extension */,
 				C1C88901292B1F7C00FD832F /* Helpers */,
 			);
-			path = Utils;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		C1C88901292B1F7C00FD832F /* Helpers */ = {
@@ -460,6 +463,7 @@
 			files = (
 				C1DDC88F292CFF5100BB101F /* CoreDataStack.swift in Sources */,
 				C1DDC88D292CFD5100BB101F /* UserManagedObject.swift in Sources */,
+				C1FD893E29EE61F900358E82 /* User+ProfileCheck.swift in Sources */,
 				C1FD891229EE0A3F00358E82 /* HTTPClient.swift in Sources */,
 				C1FD892929EE40AA00358E82 /* UsersLoaderComposite.swift in Sources */,
 				C1C888FC292B1C2C00FD832F /* UserCell.swift in Sources */,
