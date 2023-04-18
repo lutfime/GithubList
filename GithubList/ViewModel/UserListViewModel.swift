@@ -52,11 +52,6 @@ public class UserListViewModel: NSObject {
         }
     }
     
-    ///Load data from core data
-    func loadLocalData() {
-        updateFilteredUsers(with: self.filterKey)
-    }
-    
     ///Load data from local if available, then load the data from API
     public func loadData(nextPage: Bool = false){
         if isLoading{

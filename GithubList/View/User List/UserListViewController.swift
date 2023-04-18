@@ -40,7 +40,6 @@ public class UserListViewController: UIViewController, UICollectionViewDelegate,
         super.viewDidLoad()
         setupView()
         bind()
-        viewModel.loadLocalData()
         viewModel.loadData()
         title = "User List"
     }
