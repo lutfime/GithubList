@@ -121,11 +121,7 @@ class UserListViewController: UIViewController, UICollectionViewDelegate, EventD
         currentSnapshot.appendSections([0])
         currentSnapshot.appendItems(viewModel.filteredUserViewModels)
         
-        DispatchQueue.main.async {[weak self] in
-            guard let self = self else { return }
-            
-            self.dataSource.apply(self.currentSnapshot, animatingDifferences: animate)
-        }
+        self.dataSource.apply(self.currentSnapshot, animatingDifferences: animate)
         selectedIndexPath = nil
     }
     
