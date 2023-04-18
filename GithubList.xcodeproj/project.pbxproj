@@ -51,6 +51,7 @@
 		C1FD892B29EE452600358E82 /* UsersLoaderCompositeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD892A29EE452600358E82 /* UsersLoaderCompositeTests.swift */; };
 		C1FD892E29EE492B00358E82 /* UserListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD892D29EE492B00358E82 /* UserListViewModelTests.swift */; };
 		C1FD893129EE49D300358E82 /* UsersLoaderStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD893029EE49D300358E82 /* UsersLoaderStub.swift */; };
+		C1FD893329EE51F800358E82 /* SharedHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD893229EE51F800358E82 /* SharedHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +110,7 @@
 		C1FD892A29EE452600358E82 /* UsersLoaderCompositeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersLoaderCompositeTests.swift; sourceTree = "<group>"; };
 		C1FD892D29EE492B00358E82 /* UserListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewModelTests.swift; sourceTree = "<group>"; };
 		C1FD893029EE49D300358E82 /* UsersLoaderStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersLoaderStub.swift; sourceTree = "<group>"; };
+		C1FD893229EE51F800358E82 /* SharedHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedHelpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -320,6 +322,7 @@
 			isa = PBXGroup;
 			children = (
 				C1FD893029EE49D300358E82 /* UsersLoaderStub.swift */,
+				C1FD893229EE51F800358E82 /* SharedHelpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1FD893329EE51F800358E82 /* SharedHelpers.swift in Sources */,
 				C1FD891C29EE2CFE00358E82 /* XCTestCase+Snapshot.swift in Sources */,
 				C1FD893129EE49D300358E82 /* UsersLoaderStub.swift in Sources */,
 				C1FD891929EE2CD200358E82 /* UserListSnapshotTests.swift in Sources */,

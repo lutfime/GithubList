@@ -36,11 +36,4 @@ class UsersLoaderCompositeTests: XCTestCase{
         return sut
     }
     
-    func makeUser(id: Int, loginName: String) -> User{
-        let user = User()
-        user.id = id
-        user.loginName = loginName
-        return user
-    }
-    
 }
