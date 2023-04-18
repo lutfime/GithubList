@@ -40,13 +40,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let remoteLoader = APILoader(client: URLSessionHTTPClient())
         let compositeLoader = UserProfileLoaderComposite(remoteLoader: remoteLoader, localLoader: localLoader)
         
-        let model = ProfileViewModel(service: compositeLoader)
-        var profileView = UserProfileView(viewModel: model)
-        profileView.loginName = viewModel.loginName
-        profileView.avatarURL = viewModel.avatarURL
-        //Open selected user profile view
-        let vc = UIHostingController(rootView: profileView)
-        navigationController.pushViewController(vc, animated: true)
+        let profileView = UserProfileUIComposer.userProfileComposedWith(loader: compositeLoader, viewModel: viewModel)
+        navigationController.pushViewController(profileView, animated: true)
     }
 
 }
