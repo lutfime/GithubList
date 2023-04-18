@@ -38,7 +38,7 @@ class UserListSnapshotTests: XCTestCase {
 
 }
 
-private class MockAPIClientProtocol: UserAndProfileLoader{
+private class UsersLoaderMock: UsersLoader{
     public func loadGithubUsers(startUserIndex: Int, completion: @escaping (Result<[User], Error>) -> Void) {
         let user = User()
         user.loginName = "a name"
@@ -55,7 +55,4 @@ private class MockAPIClientProtocol: UserAndProfileLoader{
         completion(.success([user, user2, user3]))
     }
     
-    public func loadUserProfile(loginName: String, completion: @escaping (Result<User, Error>) -> Void) {
-        //Do nothing, not used in this test
-    }
 }
