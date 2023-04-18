@@ -18,7 +18,7 @@ public class UserListViewModel: NSObject {
     
     public weak var delegate: EventDelegate?
 
-    private let apiService: APIClientProtocol
+    private let apiService: UserAndProfileLoader
     private let dataProvider: UsersProvider
     
     private(set) var filterKey: String!
@@ -29,7 +29,7 @@ public class UserListViewModel: NSObject {
     
     var onListLoad: Observer<[UserCellViewModel]>?
     
-    public init(service: APIClientProtocol = APILoader(client: URLSessionHTTPClient()), coreDataStack: CoreDataStack = AppDelegate.shared.coreDataStack) {
+    public init(service: UserAndProfileLoader = APILoader(client: URLSessionHTTPClient()), coreDataStack: CoreDataStack = AppDelegate.shared.coreDataStack) {
         self.apiService = service
         self.dataProvider = UsersProvider(coreDataStack: coreDataStack)
         

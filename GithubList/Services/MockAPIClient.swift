@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class MockAPIClient: APIClientProtocol {
+public class MockAPIClient: UserAndProfileLoader {
     public func loadGithubUsers(startUserIndex: Int, completion: @escaping (Result<[User], Error>) -> Void) {
         let pathString = Bundle(for: type(of: self)).path(forResource: "users", ofType: "json")!
         let url = URL(fileURLWithPath: pathString)

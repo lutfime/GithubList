@@ -9,7 +9,7 @@ import XCTest
 @testable import GithubList
 
 final class GithubListTests: XCTestCase {
-    var mockAPIClient: APIClientProtocol!
+    var mockAPIClient: UserAndProfileLoader!
     var userListViewModel: UserListViewModel!
     var profileViewModel: ProfileViewModel!
     
