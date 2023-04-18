@@ -26,7 +26,7 @@ class UserListSnapshotTests: XCTestCase {
         let bundle = Bundle(for: UserListViewController.self)
         let storyboard = UIStoryboard(name: "Main", bundle: bundle)
         let controller = storyboard.instantiateViewController(identifier: "userList") { coder in
-            let viewModel = UserListViewModel(service: loader)
+            let viewModel = UserListViewModel(loader: loader)
             return UserListViewController(coder: coder, viewModel: viewModel)
         } as! UserListViewController
         

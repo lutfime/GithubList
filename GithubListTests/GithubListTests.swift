@@ -19,7 +19,7 @@ final class GithubListTests: XCTestCase {
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         mockAPIClient = MockAPIClient()
-        userListViewModel = UserListViewModel(service: mockAPIClient)
+        userListViewModel = UserListViewModel(loader: mockAPIClient)
         profileViewModel = ProfileViewModel(service: mockAPIClient)
         
         coreDataStack = TestCoreDataStack()

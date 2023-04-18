@@ -18,7 +18,7 @@ public class UserListViewModel: NSObject {
     
     public weak var delegate: EventDelegate?
 
-    private let apiService: UsersLoader
+    private let loader: UsersLoader
     
     private(set) var filterKey: String!
     private(set) var users = [User]()
@@ -28,8 +28,8 @@ public class UserListViewModel: NSObject {
     
     public var onListLoad: Observer<[UserCellViewModel]>?
     
-    public init(service: UsersLoader) {
-        self.apiService = service
+    public init(loader: UsersLoader) {
+        self.loader = loader
         
         super.init()
         setupReachability()
@@ -64,7 +64,7 @@ public class UserListViewModel: NSObject {
             startUserIndex = lastUser.id
         }
         //Load new data from API, then merge with core data
-        apiService.loadGithubUsers(startUserIndex: startUserIndex) {[weak self] result in
+        loader.loadGithubUsers(startUserIndex: startUserIndex) {[weak self] result in
             guard let self else {return}
             
             switch result {
