@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -25,12 +26,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let remoteLoader = APILoader(client: URLSessionHTTPClient()).cachingTo(coreDataStack)
         let compositeLoader = UsersLoaderComposite(localLoader: localLoader, remoteLoader: remoteLoader)
         
-        let userListVC = UserListUIComposer.userListComposedWith(loader: compositeLoader)
+        let userListVC = UserListUIComposer.userListComposedWith(loader: compositeLoader, selection: showUserProfile)
 
         navigationController.viewControllers = [userListVC]
         
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
+    }
+    
+    func showUserProfile(_ viewModel: UserCellViewModel){
+        var profileView = UserProfileView()
+        profileView.loginName = viewModel.loginName
+        profileView.avatarURL = viewModel.avatarURL
+        //Open selected user profile view
+        let vc = UIHostingController(rootView: profileView)
+        navigationController.pushViewController(vc, animated: true)
     }
 
 }

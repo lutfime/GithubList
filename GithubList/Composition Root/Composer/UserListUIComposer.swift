@@ -9,7 +9,8 @@ import UIKit
 
 class UserListUIComposer{
     public static func userListComposedWith(
-        loader: UsersLoader
+        loader: UsersLoader,
+        selection: @escaping (UserCellViewModel) -> ()
     ) -> UserListViewController {
         
         let bundle = Bundle(for: UserListViewController.self)
@@ -18,6 +19,7 @@ class UserListUIComposer{
             let viewModel = UserListViewModel(loader: loader)
             return UserListViewController(coder: coder, viewModel: viewModel)
         } as! UserListViewController
+        controller.selection = selection
         return controller
     }
 }

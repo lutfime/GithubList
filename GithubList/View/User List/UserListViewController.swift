@@ -19,6 +19,8 @@ public class UserListViewController: UIViewController, UICollectionViewDelegate,
     var currentSnapshot: NSDiffableDataSourceSnapshot<Int, UserCellViewModel>! = nil
     var selectedIndexPath: IndexPath!
     
+    public var selection: ((UserCellViewModel) -> ())?
+    
     public let viewModel: UserListViewModel
     
     // MARK:  Lifecycle
@@ -159,14 +161,7 @@ public class UserListViewController: UIViewController, UICollectionViewDelegate,
         guard let model = self.dataSource.itemIdentifier(for: indexPath) else{
             return
         }
-        
-        var profileView = UserProfileView()
-        profileView.loginName = model.loginName
-        profileView.avatarURL = model.avatarURL
-        selectedIndexPath = indexPath
-        //Open selected user profile view
-        let vc = UIHostingController(rootView: profileView)
-        self.navigationController?.pushViewController(vc, animated: true)
+        selection?(model)
     }
     
     // MARK: Event delegate
