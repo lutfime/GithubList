@@ -17,15 +17,7 @@ public class CoreDataStack: NSObject {
       return NSManagedObjectModel(contentsOf: modelURL)!
     }()
 
-    public lazy var storeContainer: NSPersistentContainer = {
-      let container = NSPersistentContainer(name: CoreDataStack.modelName, managedObjectModel: CoreDataStack.model)
-      container.loadPersistentStores { _, error in
-        if let error = error as NSError? {
-          fatalError("Unresolved error \(error), \(error.userInfo)")
-        }
-      }
-      return container
-    }()
+    let storeContainer: NSPersistentContainer
 
     lazy var mainContext: NSManagedObjectContext = self.storeContainer.viewContext
     lazy var backgroundContext: NSManagedObjectContext = {
@@ -33,6 +25,19 @@ public class CoreDataStack: NSObject {
         context.automaticallyMergesChangesFromParent = true
         return context
     }()
+    
+    enum StoreError: Error {
+        case modelNotFound
+        case failedToLoadPersistentContainer(Error)
+    }
+        
+    public init(storeURL: URL) throws {
+        do {
+            storeContainer = try NSPersistentContainer.load(name: CoreDataStack.modelName, model: CoreDataStack.model, url: storeURL)
+        } catch {
+            throw StoreError.failedToLoadPersistentContainer(error)
+        }
+    }
     
     @objc func saveContext() {
         backgroundContext.performAndWait{
@@ -45,5 +50,19 @@ public class CoreDataStack: NSObject {
                 print("Unresolved error \(error), \(error.userInfo)")
             }
         }
+    }
+}
+
+extension NSPersistentContainer {
+    static func load(name: String, model: NSManagedObjectModel, url: URL) throws -> NSPersistentContainer {
+        let description = NSPersistentStoreDescription(url: url)
+        let container = NSPersistentContainer(name: name, managedObjectModel: model)
+        container.persistentStoreDescriptions = [description]
+        
+        var loadError: Swift.Error?
+        container.loadPersistentStores { loadError = $1 }
+        try loadError.map { throw $0 }
+        
+        return container
     }
 }

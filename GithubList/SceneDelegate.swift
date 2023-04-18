@@ -7,11 +7,25 @@
 
 import UIKit
 import SwiftUI
+import CoreData
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     let navigationController = UINavigationController()
+    
+    let localStoreURL = NSPersistentContainer
+        .defaultDirectoryURL()
+        .appendingPathComponent("user-store.sqlite")
+    
+    private lazy var coreDataStack: CoreDataStack = {
+        do {
+            return try CoreDataStack(storeURL: localStoreURL)
+        }
+        catch{
+            fatalError("Cannot initialize core data")
+        }
+    }()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
@@ -21,7 +35,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func configureWindow() {
-        let coreDataStack = AppDelegate.shared.coreDataStack
         let localLoader = LocalLoader(coreDataStack: coreDataStack)
         let remoteLoader = APILoader(client: URLSessionHTTPClient()).cachingUserListTo(coreDataStack)
         let compositeLoader = UsersLoaderComposite(localLoader: localLoader, remoteLoader: remoteLoader)
@@ -35,12 +48,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func showUserProfile(_ viewModel: UserCellViewModel){
-        let coreDataStack = AppDelegate.shared.coreDataStack
         let localLoader = LocalLoader(coreDataStack: coreDataStack)
         let remoteLoader = APILoader(client: URLSessionHTTPClient()).cachingUserProfileTo(coreDataStack)
         let compositeLoader = UserProfileLoaderComposite(remoteLoader: remoteLoader, localLoader: localLoader)
         
-        let profileView = UserProfileUIComposer.userProfileComposedWith(loader: compositeLoader, viewModel: viewModel) { user in
+        let profileView = UserProfileUIComposer.userProfileComposedWith(loader: compositeLoader, viewModel: viewModel) {[coreDataStack] user in
             let userProvider = UsersProvider(coreDataStack: coreDataStack)
             userProvider.createOrUpdate(user: user)
             userProvider.coreDataStack.saveContext()

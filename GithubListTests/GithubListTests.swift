@@ -22,7 +22,8 @@ final class GithubListTests: XCTestCase {
         userListViewModel = UserListViewModel(loader: mockAPIClient)
         profileViewModel = ProfileViewModel(service: mockAPIClient)
         
-        coreDataStack = TestCoreDataStack()
+        let inMemoryStoreURL = URL(fileURLWithPath: "/dev/null")
+        coreDataStack = try! CoreDataStack(storeURL: inMemoryStoreURL)
         dataProvider = UsersProvider(coreDataStack: coreDataStack)
     }
 

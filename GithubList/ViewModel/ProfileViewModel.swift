@@ -11,7 +11,6 @@ import CoreData
 class ProfileViewModel: ObservableObject {
     
     private let apiService: UserProfileLoader
-    private let dataProvider: UsersProvider
     var onUserNeedSave: ((User) -> ())?
     
     weak var delegate: RequestDelegate?
@@ -31,7 +30,6 @@ class ProfileViewModel: ObservableObject {
     private(set) var user: User!
     
     init(service: UserProfileLoader = APILoader(client: URLSessionHTTPClient())) {
-        self.dataProvider = UsersProvider(coreDataStack: AppDelegate.shared.coreDataStack)
         self.apiService = service
     }
     

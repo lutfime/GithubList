@@ -10,16 +10,6 @@ import CoreData
 
 @main
 public class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    public lazy var coreDataStack = CoreDataStack()
-    
-    public static let shared: AppDelegate = {
-        guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
-            fatalError("Unexpected app delegate type, did it change? \(String(describing: UIApplication.shared.delegate))")
-        }
-        return delegate
-    }()
-
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true

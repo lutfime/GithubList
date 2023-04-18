@@ -26,7 +26,7 @@ class LocalLoader: UsersLoader, UserProfileLoader{
         let fetchRequest: NSFetchRequest<UserManagedObject> = UserManagedObject.fetchRequest()
         let predicate = NSPredicate(format: "%K == %@", #keyPath(UserManagedObject.loginName), loginName)
         fetchRequest.predicate = predicate
-        let results = try? dataProvider.coreDataStack.mainContext.fetch(fetchRequest)
+        let results = try? dataProvider.coreDataStack.backgroundContext.fetch(fetchRequest)
         
         if let userProfile = results?.first?.toModel(){
             completion(.success(userProfile))
