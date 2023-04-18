@@ -19,54 +19,38 @@ typealias APIClientProtocol = UsersLoader & UserProfileLoader
 
 class APILoader: UsersLoader, UserProfileLoader{
     
-    var baseURL = "https://api.github.com/"
+    let baseURL = "https://api.github.com/"
+    let client: HTTPClient
     
-    ///Use global var for session, so all network request will use 1 connection only
-    static let session: URLSession = {
-        let config = URLSessionConfiguration.default
-        config.httpMaximumConnectionsPerHost = 1
-        let session = URLSession(configuration: config)
-        return session
-    }()
+    init(client: HTTPClient) {
+        self.client = client
+    }
     
     ///Fetch github users
     func loadGithubUsers(startUserIndex: Int = 0, completion: @escaping (Result<[User], Error>) -> Void) {
         let url = URL(string: baseURL + "users?since=\(startUserIndex)")!
-        let task = APILoader.session.dataTask(with: url, completionHandler: { (data, response, error) in
-          if let error = error {
-              DispatchQueue.main.async {
-                  completion(.failure(error))
-              }
-            return
-          }
-          
-          if let data = data, let users = try? JSONDecoder().decode([User].self, from: data) {
-              DispatchQueue.main.async {
-                  completion(.success(users))
-              }
-          }
-        })
-        task.resume()
+        client.get(from: url) { result in
+            do{
+                let (data, _) = try result.get()
+                let users = try JSONDecoder().decode([User].self, from: data)
+                completion(.success(users))
+            }catch{
+                completion(.failure(error))
+            }
+        }
     }
     
     ///Fetch github user profile
     func loadUserProfile(loginName: String, completion: @escaping (Result<User, Error>) -> Void) {
         let url = URL(string: baseURL + "users/\(loginName)")!
-        let task = APILoader.session.dataTask(with: url, completionHandler: { (data, response, error) in
-          if let error = error {
-              DispatchQueue.main.async {
-                  completion(.failure(error))
-              }
-            
-            return
-          }
-          
-          if let data = data, let user = try? JSONDecoder().decode(User.self, from: data) {
-              DispatchQueue.main.async {
-                  completion(.success(user))
-              }
-          }
-        })
-        task.resume()
+        client.get(from: url) { result in
+            do{
+                let (data, _) = try result.get()
+                let user = try JSONDecoder().decode(User.self, from: data)
+                completion(.success(user))
+            }catch{
+                completion(.failure(error))
+            }
+        }
       }
 }

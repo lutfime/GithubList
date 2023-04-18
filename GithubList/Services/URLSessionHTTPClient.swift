@@ -10,7 +10,7 @@ import Foundation
 public class URLSessionHTTPClient: HTTPClient{
     private let session: URLSession
     
-    public init(session: URLSession = URLSession.shared) {
+    public init(session: URLSession = .defaultSession) {
         self.session = session
     }
     
@@ -30,5 +30,15 @@ public class URLSessionHTTPClient: HTTPClient{
             })
         }
         task.resume()
+    }
+}
+
+extension URLSession{
+    public static var defaultSession: URLSession {
+        ///All network request will use 1 connection only
+        let config = URLSessionConfiguration.default
+        config.httpMaximumConnectionsPerHost = 1
+        let session = URLSession(configuration: config)
+        return session
     }
 }

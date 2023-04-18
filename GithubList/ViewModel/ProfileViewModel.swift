@@ -29,7 +29,7 @@ class ProfileViewModel: ObservableObject {
     @Published var userProfileViewModel: UserProfileViewModel!
     private(set) var user: User!
     
-    init(service: APIClientProtocol = APILoader(), coreDataStack: CoreDataStack = AppDelegate.shared.coreDataStack) {
+    init(service: APIClientProtocol = APILoader(client: URLSessionHTTPClient()), coreDataStack: CoreDataStack = AppDelegate.shared.coreDataStack) {
         self.dataProvider = UsersProvider(coreDataStack: coreDataStack)
         self.apiService = service
     }

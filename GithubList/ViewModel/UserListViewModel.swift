@@ -28,7 +28,7 @@ class UserListViewModel: NSObject {
     private var isLoading = false
     let reachability = try! Reachability()
     
-    init(service: APIClientProtocol = APILoader(), coreDataStack: CoreDataStack = AppDelegate.shared.coreDataStack) {
+    init(service: APIClientProtocol = APILoader(client: URLSessionHTTPClient()), coreDataStack: CoreDataStack = AppDelegate.shared.coreDataStack) {
         self.apiService = service
         self.dataProvider = UsersProvider(coreDataStack: coreDataStack)
         
