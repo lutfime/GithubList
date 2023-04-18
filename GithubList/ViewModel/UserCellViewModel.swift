@@ -7,13 +7,13 @@
 
 import UIKit
 
-struct UserCellViewModel: Hashable {
-    var loginName: String!
-    var detail: String!
+public struct UserCellViewModel: Hashable {
+    public var loginName: String!
+    public var detail: String!
     
-    var avatarURL: String!
-    var profileURL: String!
-    var notes: String!
+    public var avatarURL: String!
+    public var profileURL: String!
+    public var notes: String!
     
 }
 

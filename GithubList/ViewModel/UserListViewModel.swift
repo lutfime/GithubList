@@ -14,7 +14,7 @@ public protocol EventDelegate: AnyObject {
 }
 
 public class UserListViewModel: NSObject {
-    typealias Observer<T> = (T) -> Void
+    public typealias Observer<T> = (T) -> Void
     
     public weak var delegate: EventDelegate?
 
@@ -27,7 +27,7 @@ public class UserListViewModel: NSObject {
     private var isLoading = false
     let reachability = try! Reachability()
     
-    var onListLoad: Observer<[UserCellViewModel]>?
+    public var onListLoad: Observer<[UserCellViewModel]>?
     
     public init(service: UsersLoader = APILoader(client: URLSessionHTTPClient()), coreDataStack: CoreDataStack = AppDelegate.shared.coreDataStack) {
         self.apiService = service
@@ -96,7 +96,7 @@ public class UserListViewModel: NSObject {
     }
     
     ///Update filtered users with given key
-    func updateFilteredUsers(with key: String!){
+    public func updateFilteredUsers(with key: String!){
         filterKey = key
         self.filteredUserViewModels = getFilteredUserViewModels(filterKey: key)
         onListLoad?(self.filteredUserViewModels)
