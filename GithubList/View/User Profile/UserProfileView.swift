@@ -11,11 +11,15 @@ struct UserProfileView: View {
     var loginName: String!
     var avatarURL: String!
     
-    @StateObject var viewModel = ProfileViewModel()
+    let viewModel: ProfileViewModel
     @State var userProfileViewModel = UserProfileViewModel()
     @State var notes = ""
     @State var title = "Profile"
     @State private var showingAlert = false
+    
+    init(viewModel: ProfileViewModel){
+        self.viewModel = viewModel
+    }
     
     func loadData() {
         if let loginName{
@@ -85,7 +89,7 @@ struct UserProfileView: View {
 
 struct UserProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        UserProfileView()
+        UserProfileView(viewModel: ProfileViewModel())
     }
 }
 

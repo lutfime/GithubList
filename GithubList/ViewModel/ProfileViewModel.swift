@@ -29,8 +29,8 @@ class ProfileViewModel: ObservableObject {
     @Published var userProfileViewModel: UserProfileViewModel!
     private(set) var user: User!
     
-    init(service: UserProfileLoader = APILoader(client: URLSessionHTTPClient()), coreDataStack: CoreDataStack = AppDelegate.shared.coreDataStack) {
-        self.dataProvider = UsersProvider(coreDataStack: coreDataStack)
+    init(service: UserProfileLoader = APILoader(client: URLSessionHTTPClient())) {
+        self.dataProvider = UsersProvider(coreDataStack: AppDelegate.shared.coreDataStack)
         self.apiService = service
     }
     
@@ -42,34 +42,16 @@ class ProfileViewModel: ObservableObject {
             ()
         }
         
-        //Load data from
-        var foundUserCoreData: UserManagedObject!
-        let stack = AppDelegate.shared.coreDataStack
-        let fetchRequest: NSFetchRequest<UserManagedObject> = UserManagedObject.fetchRequest()
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(UserManagedObject.loginName), loginName)
-        fetchRequest.predicate = predicate
-        do {
-            let results = try stack.mainContext.fetch(fetchRequest)
-            if !results.isEmpty {
-                foundUserCoreData = results.first
-            }
-        } catch let error as NSError {
-            print("Fetch error: \(error) description: \(error.userInfo)")
-        }
-        
         //Load user profile
         state = .loading
         apiService.loadUserProfile(loginName: loginName) { result in
             switch result {
             case .success(let user):
-                if let foundUserCoreData{
-                    user.notes = foundUserCoreData.notes
-                }
                 self.user = user
                 self.userProfileViewModel = self.getUserProfileViewModel(user: user)
-                self.dataProvider.createOrUpdate(user: user)
-                //Save core data
-                AppDelegate.shared.coreDataStack.saveContext()
+//                self.dataProvider.createOrUpdate(user: user)
+//                //Save core data
+//                AppDelegate.shared.coreDataStack.saveContext()
                 self.state = .success
             case .failure(let error):
                 self.state = .error(error)

@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func configureWindow() {
         let coreDataStack = AppDelegate.shared.coreDataStack
         let localLoader = LocalLoader(coreDataStack: coreDataStack)
-        let remoteLoader = APILoader(client: URLSessionHTTPClient()).cachingTo(coreDataStack)
+        let remoteLoader = APILoader(client: URLSessionHTTPClient()).cachingUserListTo(coreDataStack)
         let compositeLoader = UsersLoaderComposite(localLoader: localLoader, remoteLoader: remoteLoader)
         
         let userListVC = UserListUIComposer.userListComposedWith(loader: compositeLoader, selection: showUserProfile)
@@ -35,7 +35,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func showUserProfile(_ viewModel: UserCellViewModel){
-        var profileView = UserProfileView()
+        let coreDataStack = AppDelegate.shared.coreDataStack
+        let localLoader = LocalLoader(coreDataStack: coreDataStack)
+        let remoteLoader = APILoader(client: URLSessionHTTPClient())
+        let compositeLoader = UserProfileLoaderComposite(remoteLoader: remoteLoader, localLoader: localLoader)
+        
+        let model = ProfileViewModel(service: compositeLoader)
+        var profileView = UserProfileView(viewModel: model)
         profileView.loginName = viewModel.loginName
         profileView.avatarURL = viewModel.avatarURL
         //Open selected user profile view
