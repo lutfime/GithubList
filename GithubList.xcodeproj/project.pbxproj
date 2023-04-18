@@ -42,6 +42,10 @@
 		C1DDC8BB292EFD9300BB101F /* MockAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DDC8B2292EE15400BB101F /* MockAPIClient.swift */; };
 		C1FD891229EE0A3F00358E82 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD891129EE0A3F00358E82 /* HTTPClient.swift */; };
 		C1FD891429EE295000358E82 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD891329EE295000358E82 /* URLSessionHTTPClient.swift */; };
+		C1FD891929EE2CD200358E82 /* UserListSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD891829EE2CD200358E82 /* UserListSnapshotTests.swift */; };
+		C1FD891C29EE2CFE00358E82 /* XCTestCase+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD891B29EE2CFE00358E82 /* XCTestCase+Snapshot.swift */; };
+		C1FD891E29EE2D2200358E82 /* UIViewController+Snapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD891D29EE2D2200358E82 /* UIViewController+Snapshot.swift */; };
+		C1FD892129EE36F200358E82 /* snapshots in Resources */ = {isa = PBXBuildFile; fileRef = C1FD892029EE36F200358E82 /* snapshots */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +95,10 @@
 		C1DDC8B6292EE5F300BB101F /* userProfile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userProfile.json; sourceTree = "<group>"; };
 		C1FD891129EE0A3F00358E82 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		C1FD891329EE295000358E82 /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
+		C1FD891829EE2CD200358E82 /* UserListSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListSnapshotTests.swift; sourceTree = "<group>"; };
+		C1FD891B29EE2CFE00358E82 /* XCTestCase+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Snapshot.swift"; sourceTree = "<group>"; };
+		C1FD891D29EE2D2200358E82 /* UIViewController+Snapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Snapshot.swift"; sourceTree = "<group>"; };
+		C1FD892029EE36F200358E82 /* snapshots */ = {isa = PBXFileReference; lastKnownFileType = folder; path = snapshots; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -258,11 +266,31 @@
 		C1DDC8A4292DE23A00BB101F /* GithubListTests */ = {
 			isa = PBXGroup;
 			children = (
+				C1FD891729EE2CBD00358E82 /* View */,
 				C1DDC8B6292EE5F300BB101F /* userProfile.json */,
 				C1DDC8B4292EE18C00BB101F /* users.json */,
 				C1DDC8A5292DE23A00BB101F /* GithubListTests.swift */,
 			);
 			path = GithubListTests;
+			sourceTree = "<group>";
+		};
+		C1FD891729EE2CBD00358E82 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C1FD892029EE36F200358E82 /* snapshots */,
+				C1FD891A29EE2CE500358E82 /* Helpers */,
+				C1FD891829EE2CD200358E82 /* UserListSnapshotTests.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C1FD891A29EE2CE500358E82 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C1FD891B29EE2CFE00358E82 /* XCTestCase+Snapshot.swift */,
+				C1FD891D29EE2D2200358E82 /* UIViewController+Snapshot.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -359,6 +387,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1DDC8B7292EE5F300BB101F /* userProfile.json in Resources */,
+				C1FD892129EE36F200358E82 /* snapshots in Resources */,
 				C1DDC8B5292EE18C00BB101F /* users.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -404,6 +433,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1FD891C29EE2CFE00358E82 /* XCTestCase+Snapshot.swift in Sources */,
+				C1FD891929EE2CD200358E82 /* UserListSnapshotTests.swift in Sources */,
+				C1FD891E29EE2D2200358E82 /* UIViewController+Snapshot.swift in Sources */,
 				C1DDC8A6292DE23A00BB101F /* GithubListTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

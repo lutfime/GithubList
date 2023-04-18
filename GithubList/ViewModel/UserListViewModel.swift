@@ -8,16 +8,16 @@
 import UIKit
 import CoreData
 
-protocol EventDelegate: AnyObject {
+public protocol EventDelegate: AnyObject {
     func handleDataDidUpdate()
     func handleNoInternetConnection()
     func handleInternetConnectionRestored()
 }
 
 
-class UserListViewModel: NSObject {
+public class UserListViewModel: NSObject {
     
-    weak var delegate: EventDelegate?
+    public weak var delegate: EventDelegate?
 
     private let apiService: APIClientProtocol
     private let dataProvider: UsersProvider
@@ -28,7 +28,7 @@ class UserListViewModel: NSObject {
     private var isLoading = false
     let reachability = try! Reachability()
     
-    init(service: APIClientProtocol = APILoader(client: URLSessionHTTPClient()), coreDataStack: CoreDataStack = AppDelegate.shared.coreDataStack) {
+    public init(service: APIClientProtocol = APILoader(client: URLSessionHTTPClient()), coreDataStack: CoreDataStack = AppDelegate.shared.coreDataStack) {
         self.apiService = service
         self.dataProvider = UsersProvider(coreDataStack: coreDataStack)
         

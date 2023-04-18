@@ -8,7 +8,7 @@
 import CoreData
 import Foundation
 
-class CoreDataStack: NSObject {
+public class CoreDataStack: NSObject {
     public static let modelName = "GithubUsers"
 
     public static let model: NSManagedObjectModel = {

@@ -8,7 +8,7 @@
 import UIKit
 
 @objcMembers
-class User: NSObject, Codable {
+public class User: NSObject, Codable {
     private enum CodingKeys: String, CodingKey {
         case id
         case loginName = "login"
@@ -25,19 +25,19 @@ class User: NSObject, Codable {
         case followingCount = "following"
     }
     
-    var loginName: String!
-    var id: Int = -1
-    var avatarURL: String!
-    var profileURL: String!
-    var starredURL: String!
-    var notes: String!
+    public var loginName: String!
+    public var id: Int = -1
+    public var avatarURL: String!
+    public var profileURL: String!
+    public var starredURL: String!
+    public var notes: String!
     
-    var name: String!
-    var company: String!
-    var blog: String!
-    var location: String!
-    var email: String!
-    var followerCount: Int!
-    var followingCount: Int!
+    public var name: String!
+    public var company: String!
+    public var blog: String!
+    public var location: String!
+    public var email: String!
+    public var followerCount: Int!
+    public var followingCount: Int!
     
 }

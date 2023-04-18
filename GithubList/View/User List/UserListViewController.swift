@@ -8,9 +8,9 @@
 import UIKit
 import SwiftUI
 
-class UserListViewController: UIViewController, UICollectionViewDelegate, EventDelegate, UISearchBarDelegate {
+public class UserListViewController: UIViewController, UICollectionViewDelegate, EventDelegate, UISearchBarDelegate {
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet public private(set) weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
     let bottomInfoView = BottomInfoView(frame: CGRect.zero)
     var loadingIndicatorCell: LoadingIndicatorCell!
@@ -19,11 +19,21 @@ class UserListViewController: UIViewController, UICollectionViewDelegate, EventD
     var currentSnapshot: NSDiffableDataSourceSnapshot<Int, UserCellViewModel>! = nil
     var selectedIndexPath: IndexPath!
     
-    private let viewModel = UserListViewModel()
+    public let viewModel: UserListViewModel
     
     // MARK:  Lifecycle
     
-    override func viewDidLoad() {
+    public required init?(coder: NSCoder, viewModel: UserListViewModel) {
+        self.viewModel = viewModel
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        self.viewModel = UserListViewModel()
+        super.init(coder: coder)
+    }
+    
+    public override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         viewModel.loadLocalData()
@@ -31,7 +41,7 @@ class UserListViewController: UIViewController, UICollectionViewDelegate, EventD
         title = "User List"
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if selectedIndexPath != nil{
             //If selectedIndexPath not nil, it means that the indexPath has been selected. Reload collection view because data such as notes etc might be updated 
@@ -119,7 +129,8 @@ class UserListViewController: UIViewController, UICollectionViewDelegate, EventD
     func updateCollectionViewSnapshot(animate: Bool = false){
         currentSnapshot = NSDiffableDataSourceSnapshot<Int, UserCellViewModel>()
         currentSnapshot.appendSections([0])
-        currentSnapshot.appendItems(viewModel.filteredUserViewModels)
+        let models = viewModel.filteredUserViewModels
+        currentSnapshot.appendItems(models)
         
         self.dataSource.apply(self.currentSnapshot, animatingDifferences: animate)
         selectedIndexPath = nil
@@ -127,7 +138,7 @@ class UserListViewController: UIViewController, UICollectionViewDelegate, EventD
     
     // MARK:  Collection View delegate
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let height = scrollView.frame.size.height
         let contentYOffset = scrollView.contentOffset.y
         let distanceFromBottom = scrollView.contentSize.height - contentYOffset
@@ -144,7 +155,7 @@ class UserListViewController: UIViewController, UICollectionViewDelegate, EventD
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let model = viewModel.getCellViewModel(at: indexPath)
         
         var profileView = UserProfileView()
@@ -158,22 +169,22 @@ class UserListViewController: UIViewController, UICollectionViewDelegate, EventD
     
     // MARK: Event delegate
     
-    func handleDataDidUpdate() {
+    public func handleDataDidUpdate() {
         loadingIndicatorCell?.stopIndicatorAnimation()
         updateCollectionViewSnapshot(animate: true)
     }
     
-    func handleNoInternetConnection() {
+    public func handleNoInternetConnection() {
         bottomInfoView.showInfo("No Internet Connection", in: view, color: UIColor.red)
     }
     
-    func handleInternetConnectionRestored() {
+    public func handleInternetConnectionRestored() {
         bottomInfoView.hideInfo()
     }
 
     // MARK: Search bar delegate
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    public func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         viewModel.updateFilteredUsers(with: searchText)
     }
 }
