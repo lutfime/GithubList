@@ -104,8 +104,7 @@ public class UserListViewController: UIViewController, UICollectionViewDelegate,
     func configureDataSource(){
         //Register cells
         let cellItemRegistration = UICollectionView.CellRegistration<UserCell, UserCellViewModel>{ (cell, indexPath, item) in
-            let model = self.viewModel.getCellViewModel(at: indexPath)
-            cell.configure(user: model, indexPath: indexPath)
+            cell.configure(user: item, indexPath: indexPath)
         }
         
         //Register footer cells
@@ -159,7 +158,9 @@ public class UserListViewController: UIViewController, UICollectionViewDelegate,
     }
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let model = viewModel.getCellViewModel(at: indexPath)
+        guard let model = self.dataSource.itemIdentifier(for: indexPath) else{
+            return
+        }
         
         var profileView = UserProfileView()
         profileView.loginName = model.loginName

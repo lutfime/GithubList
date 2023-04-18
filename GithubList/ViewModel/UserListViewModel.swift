@@ -23,7 +23,7 @@ public class UserListViewModel: NSObject {
     
     private(set) var filterKey: String!
     private(set) var users = [User]()
-    private(set) var filteredUserViewModels = [UserCellViewModel]()
+    private(set) var userViewModels = [UserCellViewModel]()
     private var isLoading = false
     let reachability = try! Reachability()
     
@@ -87,6 +87,7 @@ public class UserListViewModel: NSObject {
                 }
                 //Save core data
                 self.dataProvider.coreDataStack.saveContext()
+                self.userViewModels = users.map({$0.toCellModel()})
                 self.updateFilteredUsers(with: self.filterKey)
                 self.isLoading = false
             case .failure(let _):
@@ -98,10 +99,20 @@ public class UserListViewModel: NSObject {
     ///Update filtered users with given key
     public func updateFilteredUsers(with key: String!){
         filterKey = key
-        self.filteredUserViewModels = getFilteredUserViewModels(filterKey: key)
-        onListLoad?(self.filteredUserViewModels)
+        var filtered = userViewModels
+        if let filterKey = filterKey?.lowercased(){
+            filtered = userViewModels.filter { user in
+                if user.loginName.lowercased().contains(filterKey){
+                    return true
+                }
+                if let notes = user.notes, notes.lowercased().contains(filterKey){
+                    return true
+                }
+                return false
+            }
+        }
+        onListLoad?(filtered)
     }
-    
     
     ///Get filtered user view models from core data
     func getFilteredUserViewModels(filterKey: String! = nil) -> [UserCellViewModel]{
@@ -124,11 +135,6 @@ public class UserListViewModel: NSObject {
         return model
     }
     
-    func getCellViewModel(at indexPath: IndexPath) -> UserCellViewModel{
-        let model = filteredUserViewModels[indexPath.row]
-        return model
-    }
-    
     ///Check if the data is being filtered
     func isBeingFiltered() -> Bool{
         if let filterKey, filterKey.count > 0{
@@ -137,4 +143,11 @@ public class UserListViewModel: NSObject {
         return false
     }
     
+}
+
+extension User{
+    func toCellModel() -> UserCellViewModel{
+        let model = UserCellViewModel(loginName: loginName, detail: nil, avatarURL: avatarURL, profileURL: profileURL, notes: notes)
+        return model
+    }
 }

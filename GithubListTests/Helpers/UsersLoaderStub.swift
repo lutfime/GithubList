@@ -24,14 +24,19 @@ class UsersLoaderStub: UsersLoader{
         let user = User()
         user.loginName = "a name"
         user.avatarURL = "a url"
+        user.notes = "a note"
         
         let user2 = User()
         user2.loginName = "other name"
         user2.avatarURL = "other url"
+        user2.notes = "other note"
+
         
         let user3 = User()
         user3.loginName = "another name"
         user3.avatarURL = "another url"
+        user3.notes = "another note"
+
         return [user, user2, user3]
     }()
 }
