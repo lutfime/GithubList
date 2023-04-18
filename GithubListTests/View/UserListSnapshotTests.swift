@@ -12,12 +12,12 @@ class UserListSnapshotTests: XCTestCase {
 
     func test_listUser_withNotes() {
         let sut = makeSUT(loader: UsersLoaderStub(users: makeUsersWithNotes()))
-        record(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "LIST_USER_VC_notes")
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "LIST_USER_VC_notes")
     }
     
     func test_listUser_withoutNotes() {
         let sut = makeSUT(loader: UsersLoaderStub(users: makeUsersWithoutNotes()))
-        record(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "LIST_USER_VC")
+        assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "LIST_USER_VC")
     }
 
     // MARK: - Helpers
