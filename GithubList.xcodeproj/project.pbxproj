@@ -154,8 +154,7 @@
 		C1C888D82925EE6D00FD832F /* GithubList */ = {
 			isa = PBXGroup;
 			children = (
-				C1FD893429EE56F900358E82 /* UsersLoaderCacheDecorator.swift */,
-				C1FD892829EE40AA00358E82 /* UsersLoaderComposite.swift */,
+				C1FD893629EE59AA00358E82 /* Composition Root */,
 				C1C888F02925F2B000FD832F /* Services */,
 				C1DDC889292CF87E00BB101F /* Core Data */,
 				C1C88900292B1F7800FD832F /* Utils */,
@@ -328,6 +327,15 @@
 				C1FD893229EE51F800358E82 /* SharedHelpers.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		C1FD893629EE59AA00358E82 /* Composition Root */ = {
+			isa = PBXGroup;
+			children = (
+				C1FD893429EE56F900358E82 /* UsersLoaderCacheDecorator.swift */,
+				C1FD892829EE40AA00358E82 /* UsersLoaderComposite.swift */,
+			);
+			path = "Composition Root";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
