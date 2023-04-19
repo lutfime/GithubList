@@ -29,7 +29,8 @@ public class UsersLoaderComposite: UsersLoader{
         func completeWhenBothLoaderCompleted(){
             if let localResult, let remoteResult{
                 do{
-                    let users = combineUsers(try localResult.get(), remoteUsers: try remoteResult.get())
+                    let localUsers = try? localResult.get()
+                    let users = combineUsers(localUsers ?? [], remoteUsers: try remoteResult.get())
                     completion(.success(users))
                 }
                 catch{
