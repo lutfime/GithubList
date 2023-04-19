@@ -298,8 +298,6 @@
 				C1FD892F29EE49BC00358E82 /* Helpers */,
 				C1FD892C29EE48C900358E82 /* ViewModel */,
 				C1FD891729EE2CBD00358E82 /* View */,
-				C1DDC8B6292EE5F300BB101F /* userProfile.json */,
-				C1DDC8B4292EE18C00BB101F /* users.json */,
 				C1DDC8A5292DE23A00BB101F /* GithubListTests.swift */,
 				C1FD892A29EE452600358E82 /* UsersLoaderCompositeTests.swift */,
 			);
@@ -336,6 +334,8 @@
 		C1FD892F29EE49BC00358E82 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				C1DDC8B6292EE5F300BB101F /* userProfile.json */,
+				C1DDC8B4292EE18C00BB101F /* users.json */,
 				C1FD893029EE49D300358E82 /* UsersLoaderStub.swift */,
 				C1FD893229EE51F800358E82 /* SharedHelpers.swift */,
 			);
