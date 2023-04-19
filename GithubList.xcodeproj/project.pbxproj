@@ -61,6 +61,7 @@
 		C1FD894729EF5B7900358E82 /* UsersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD894629EF5B7900358E82 /* UsersRepository.swift */; };
 		C1FD894A29EF5DC900358E82 /* UserManagedObjectHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD894929EF5DC900358E82 /* UserManagedObjectHelpers.swift */; };
 		C1FD894C29EF805300358E82 /* UsersCoreDataRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD894B29EF805300358E82 /* UsersCoreDataRepositoryTests.swift */; };
+		C1FD895629EF90B800358E82 /* InternetConnectionUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD895529EF90B800358E82 /* InternetConnectionUpdater.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +130,7 @@
 		C1FD894629EF5B7900358E82 /* UsersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersRepository.swift; sourceTree = "<group>"; };
 		C1FD894929EF5DC900358E82 /* UserManagedObjectHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagedObjectHelpers.swift; sourceTree = "<group>"; };
 		C1FD894B29EF805300358E82 /* UsersCoreDataRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersCoreDataRepositoryTests.swift; sourceTree = "<group>"; };
+		C1FD895529EF90B800358E82 /* InternetConnectionUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetConnectionUpdater.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,6 +302,7 @@
 		C1FD893629EE59AA00358E82 /* Composition Root */ = {
 			isa = PBXGroup;
 			children = (
+				C1FD895429EF90A700358E82 /* Internet Updater */,
 				C1FD893729EE5A8900358E82 /* Composer */,
 				C1FD893429EE56F900358E82 /* UsersLoaderCacheDecorator.swift */,
 				C1FD892829EE40AA00358E82 /* UsersLoaderComposite.swift */,
@@ -400,6 +403,14 @@
 				C1C8891A292C77FC00FD832F /* ProfileViewModel.swift */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		C1FD895429EF90A700358E82 /* Internet Updater */ = {
+			isa = PBXGroup;
+			children = (
+				C1FD895529EF90B800358E82 /* InternetConnectionUpdater.swift */,
+			);
+			path = "Internet Updater";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -508,6 +519,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1FD895629EF90B800358E82 /* InternetConnectionUpdater.swift in Sources */,
 				C1DDC88F292CFF5100BB101F /* CoreDataStack.swift in Sources */,
 				C1FD894229EE77F400358E82 /* MainQueueDispatchDecorator.swift in Sources */,
 				C1DDC88D292CFD5100BB101F /* UserManagedObject.swift in Sources */,

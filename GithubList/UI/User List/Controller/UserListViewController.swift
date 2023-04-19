@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI
 
-public class UserListViewController: UIViewController, UICollectionViewDelegate, EventDelegate, UISearchBarDelegate {
+public class UserListViewController: UIViewController, UICollectionViewDelegate, UISearchBarDelegate {
     
     @IBOutlet public private(set) weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -57,7 +57,6 @@ public class UserListViewController: UIViewController, UICollectionViewDelegate,
         collectionView.delegate = self
         collectionView.backgroundColor = UIColor.white
         
-        viewModel.delegate = self
         searchBar.delegate = self
     }
     

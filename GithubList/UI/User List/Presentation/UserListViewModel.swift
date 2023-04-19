@@ -8,48 +8,21 @@
 import UIKit
 import CoreData
 
-public protocol EventDelegate: AnyObject {
-    func handleNoInternetConnection()
-    func handleInternetConnectionRestored()
-}
-
 public class UserListViewModel: NSObject {
     public typealias Observer<T> = (T) -> Void
     
-    public weak var delegate: EventDelegate?
-
     private let loader: UsersLoader
     
     private(set) var filterKey: String!
     private(set) var users = [User]()
     private(set) var userViewModels = [UserCellViewModel]()
     private var isLoading = false
-    let reachability = try! Reachability()
     
     public var onListLoad: Observer<[UserCellViewModel]>?
     
+    
     public init(loader: UsersLoader) {
         self.loader = loader
-        
-        super.init()
-        setupReachability()
-    }
-    
-    func setupReachability(){
-        reachability.whenReachable = { reachability in
-            self.delegate?.handleInternetConnectionRestored()
-            //Retry loading when internet restored
-            self.loadData()
-        }
-        reachability.whenUnreachable = { _ in
-            self.delegate?.handleNoInternetConnection()
-        }
-
-        do {
-            try reachability.startNotifier()
-        } catch {
-            print("Unable to start notifier")
-        }
     }
     
     ///Load data from local if available, then load the data from API

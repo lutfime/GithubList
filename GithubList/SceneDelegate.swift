@@ -30,6 +30,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private lazy var usersRepository: UsersRepository = {
         return UsersCoreDataRepository(coreDataStack: coreDataStack)
     }()
+    
+    private lazy var reachability: Reachability = {
+        let reachability = try! Reachability()
+        try! reachability.startNotifier()
+        return reachability
+    }()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
@@ -43,7 +49,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let remoteLoader = APILoader(client: URLSessionHTTPClient()).cachingUserListTo(coreDataStack)
         let compositeLoader = UsersLoaderComposite(localLoader: localLoader, remoteLoader: remoteLoader)
         
-        let userListVC = UserListUIComposer.userListComposedWith(loader: compositeLoader, selection: showUserProfile)
+        let userListVC = UserListUIComposer.userListComposedWith(loader: compositeLoader, selection: showUserProfile, internetConnectionUpdater: {[weak self] internetUpdater in
+            self?.reachability.whenReachable = { reachability in
+                internetUpdater.internetConnectionUpdated(.connected)
+            }
+            self?.reachability.whenUnreachable = { _ in
+                internetUpdater.internetConnectionUpdated(.notConnected)
+            }
+        })
 
         navigationController.viewControllers = [userListVC]
         
@@ -63,6 +76,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         navigationController.pushViewController(profileView, animated: true)
     }
-
 }
 

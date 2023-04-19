@@ -10,7 +10,8 @@ import UIKit
 class UserListUIComposer{
     public static func userListComposedWith(
         loader: UsersLoader,
-        selection: @escaping (UserCellViewModel) -> ()
+        selection: @escaping (UserCellViewModel) -> (),
+        internetConnectionUpdater: @escaping (InternetConnectionUpdater) -> ()
     ) -> UserListViewController {
         
         let bundle = Bundle(for: UserListViewController.self)
@@ -20,6 +21,27 @@ class UserListUIComposer{
             return UserListViewController(coder: coder, viewModel: viewModel)
         } as! UserListViewController
         controller.selection = selection
+        
+        let internetUpdater = UserListInternetUpdatedAdapter(userListVC: controller)
+        internetConnectionUpdater(internetUpdater)
+        
         return controller
+    }
+}
+
+class UserListInternetUpdatedAdapter: InternetConnectionUpdater{
+    let userListVC: UserListViewController
+    
+    init(userListVC: UserListViewController) {
+        self.userListVC = userListVC
+    }
+    
+    func internetConnectionUpdated(_ state: InternetConnectionState) {
+        switch state {
+        case .connected:
+            userListVC.handleInternetConnectionRestored()
+        case .notConnected:
+            userListVC.handleNoInternetConnection()
+        }
     }
 }
