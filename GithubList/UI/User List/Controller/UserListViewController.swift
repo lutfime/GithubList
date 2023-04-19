@@ -65,6 +65,13 @@ public class UserListViewController: UIViewController, UICollectionViewDelegate,
             self?.loadingIndicatorCell?.stopIndicatorAnimation()
             self?.display(users)
         }
+        viewModel.onLoadingNextPage = {[weak self] isLoading in
+            if isLoading{
+                self?.loadingIndicatorCell?.startIndicatorAnimation()
+            }else{
+                self?.loadingIndicatorCell?.stopIndicatorAnimation()
+            }
+        }
     }
     
     // MARK:  Configure Collection View
@@ -148,13 +155,10 @@ public class UserListViewController: UIViewController, UICollectionViewDelegate,
 
         //Here, if we are at bottom collection view and is not being filtered, show loading indicator animation then load next page
         if distanceFromBottom < height, !viewModel.isBeingFiltered() {
-            loadingIndicatorCell?.showIndicator(flag: true)
             if !scrollView.isDragging{
                 loadingIndicatorCell?.startIndicatorAnimation()
                 viewModel.loadData(nextPage: true)
             }
-        }else{
-            loadingIndicatorCell?.showIndicator(flag: false)
         }
     }
     

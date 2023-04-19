@@ -16,10 +16,11 @@ public class UserListViewModel: NSObject {
     private(set) var filterKey: String!
     private(set) var users = [User]()
     private(set) var userViewModels = [UserCellViewModel]()
-    private var isLoading = false
+    private(set) var isLoading = false
     
     public var onListLoad: Observer<[UserCellViewModel]>?
-    
+    public var onLoadingNextPage: Observer<Bool>?
+
     
     public init(loader: UsersLoader) {
         self.loader = loader
@@ -32,16 +33,18 @@ public class UserListViewModel: NSObject {
         }
         
         isLoading = true
+        
         var startUserIndex = 0
         if nextPage, let lastUser = users.last{
             startUserIndex = lastUser.id
+            onLoadingNextPage?(true)
         }
+        
         //Load new data from API, then merge with core data
         loader.loadGithubUsers(startUserIndex: startUserIndex) {[weak self] result in
             guard let self else {return}
             
-            switch result {
-            case .success(let users):
+            if let users = try? result.get(){
                 if nextPage{
                     self.users.append(contentsOf: users)
                 }else{
@@ -49,10 +52,10 @@ public class UserListViewModel: NSObject {
                 }
                 self.userViewModels = users.map({$0.toCellModel()})
                 self.updateFilteredUsers(with: self.filterKey)
-                self.isLoading = false
-            case .failure:
-                self.isLoading = false
             }
+            
+            self.isLoading = false
+            self.onLoadingNextPage?(false)
         }
     }
     
