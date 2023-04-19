@@ -15,7 +15,7 @@ public class UserListViewController: UIViewController, UICollectionViewDelegate,
     
     public let viewModel: UserListViewModel
     let bottomInfoView = BottomInfoView(frame: CGRect.zero)
-    var loadingIndicatorCell: LoadingIndicatorCell!
+    var loadingMoreIndicatorCell: LoadingIndicatorCell!
     
     lazy private(set) var dataSource: UICollectionViewDiffableDataSource<Int, UserCellViewModel> = {
         return configureDataSource()
@@ -62,14 +62,14 @@ public class UserListViewController: UIViewController, UICollectionViewDelegate,
     
     func bind(){
         viewModel.onListLoad = {[weak self] users in
-            self?.loadingIndicatorCell?.stopIndicatorAnimation()
+            self?.loadingMoreIndicatorCell?.stopIndicatorAnimation()
             self?.display(users)
         }
         viewModel.onLoadingNextPage = {[weak self] isLoading in
             if isLoading{
-                self?.loadingIndicatorCell?.startIndicatorAnimation()
+                self?.loadingMoreIndicatorCell?.startIndicatorAnimation()
             }else{
-                self?.loadingIndicatorCell?.stopIndicatorAnimation()
+                self?.loadingMoreIndicatorCell?.stopIndicatorAnimation()
             }
         }
     }
@@ -129,7 +129,7 @@ public class UserListViewController: UIViewController, UICollectionViewDelegate,
                 registrationView = self.collectionView.dequeueConfiguredReusableSupplementary(using: loadingFooterRegistration, for: indexPath)
                 if let registrationView = registrationView as? LoadingIndicatorCell{
                     //Save the cell to local variable, so we can access it
-                    self.loadingIndicatorCell = registrationView
+                    self.loadingMoreIndicatorCell = registrationView
                 }
             }
             return registrationView
@@ -156,7 +156,7 @@ public class UserListViewController: UIViewController, UICollectionViewDelegate,
         //Here, if we are at bottom collection view and is not being filtered, show loading indicator animation then load next page
         if distanceFromBottom < height, !viewModel.isBeingFiltered() {
             if !scrollView.isDragging{
-                loadingIndicatorCell?.startIndicatorAnimation()
+                loadingMoreIndicatorCell?.startIndicatorAnimation()
                 viewModel.loadData(nextPage: true)
             }
         }
