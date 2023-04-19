@@ -18,7 +18,6 @@
 		C1C888FA292B1A2200FD832F /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C888F9292B1A2200FD832F /* UserListViewController.swift */; };
 		C1C888FC292B1C2C00FD832F /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C888FB292B1C2C00FD832F /* UserCell.swift */; };
 		C1C888FF292B1D7800FD832F /* UserListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C888FE292B1D7800FD832F /* UserListViewModel.swift */; };
-		C1C88903292B1F8F00FD832F /* RequestDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C88902292B1F8F00FD832F /* RequestDelegate.swift */; };
 		C1C88905292B282800FD832F /* UserCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C88904292B282800FD832F /* UserCellViewModel.swift */; };
 		C1C8890B292B323300FD832F /* OldImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C8890A292B323300FD832F /* OldImageLoader.swift */; };
 		C1C8890E292B36FC00FD832F /* UIImageView+Load.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C8890D292B36FC00FD832F /* UIImageView+Load.swift */; };
@@ -93,7 +92,6 @@
 		C1C888F9292B1A2200FD832F /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
 		C1C888FB292B1C2C00FD832F /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		C1C888FE292B1D7800FD832F /* UserListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewModel.swift; sourceTree = "<group>"; };
-		C1C88902292B1F8F00FD832F /* RequestDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDelegate.swift; sourceTree = "<group>"; };
 		C1C88904292B282800FD832F /* UserCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCellViewModel.swift; sourceTree = "<group>"; };
 		C1C8890A292B323300FD832F /* OldImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldImageLoader.swift; sourceTree = "<group>"; };
 		C1C8890D292B36FC00FD832F /* UIImageView+Load.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Load.swift"; sourceTree = "<group>"; };
@@ -226,7 +224,6 @@
 			isa = PBXGroup;
 			children = (
 				C1DDC891292DC1F700BB101F /* Reachability.swift */,
-				C1C88902292B1F8F00FD832F /* RequestDelegate.swift */,
 				C1DDC8B0292E629700BB101F /* ImageCacheManager.swift */,
 			);
 			path = Helpers;
@@ -571,7 +568,6 @@
 				C1FD893929EE5A9B00358E82 /* UserListUIComposer.swift in Sources */,
 				C1FD895F29EF9D6200358E82 /* LocalImageLoader.swift in Sources */,
 				C1FD895D29EF9D0E00358E82 /* ImageLoader.swift in Sources */,
-				C1C88903292B1F8F00FD832F /* RequestDelegate.swift in Sources */,
 				C1DDC88B292CF89400BB101F /* UsersCoreDataRepository.swift in Sources */,
 				C1DDC892292DC1F800BB101F /* Reachability.swift in Sources */,
 				C1C88913292B619900FD832F /* LoadingIndicatorCell.swift in Sources */,
