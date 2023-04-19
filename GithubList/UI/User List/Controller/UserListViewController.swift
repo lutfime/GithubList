@@ -72,6 +72,14 @@ public class UserListViewController: UIViewController, UICollectionViewDelegate,
                 self?.loadingMoreIndicatorCell?.stopIndicatorAnimation()
             }
         }
+        viewModel.onError = { message in
+            let dialogMessage = UIAlertController(title: "Load Error", message: message, preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+
+            })
+            dialogMessage.addAction(ok)
+            self.present(dialogMessage, animated: true, completion: nil)
+        }
     }
     
     // MARK:  Configure Collection View

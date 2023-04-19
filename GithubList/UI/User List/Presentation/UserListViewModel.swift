@@ -20,6 +20,8 @@ public class UserListViewModel: NSObject {
     
     public var onListLoad: Observer<[UserCellViewModel]>?
     public var onLoadingNextPage: Observer<Bool>?
+    public var onError: Observer<String>?
+
 
     
     public init(loader: UsersLoader) {
@@ -44,7 +46,8 @@ public class UserListViewModel: NSObject {
         loader.loadGithubUsers(startUserIndex: startUserIndex) {[weak self] result in
             guard let self else {return}
             
-            if let users = try? result.get(){
+            switch result{
+            case .success(let users):
                 if nextPage{
                     self.users.append(contentsOf: users)
                 }else{
@@ -52,6 +55,8 @@ public class UserListViewModel: NSObject {
                 }
                 self.userViewModels = users.map({$0.toCellModel()})
                 self.updateFilteredUsers(with: self.filterKey)
+            case .failure(let _):
+                self.onError?("Unknown error when loading")
             }
             
             self.isLoading = false
