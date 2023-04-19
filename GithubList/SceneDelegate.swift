@@ -49,7 +49,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let remoteLoader = APILoader(client: URLSessionHTTPClient()).cachingUserListTo(coreDataStack)
         let compositeLoader = UsersLoaderComposite(localLoader: localLoader, remoteLoader: remoteLoader)
         
-        let userListVC = UserListUIComposer.userListComposedWith(loader: compositeLoader, selection: showUserProfile, internetConnectionUpdater: {[weak self] internetUpdater in
+        let localImageLoader = LocalImageLoader()
+        
+        let userListVC = UserListUIComposer.userListComposedWith(
+            loader: compositeLoader,
+            imageLoader: localImageLoader,
+            selection: showUserProfile,
+            internetConnectionUpdater: {[weak self] internetUpdater in
             self?.reachability.whenReachable = { reachability in
                 internetUpdater.internetConnectionUpdated(.connected)
             }

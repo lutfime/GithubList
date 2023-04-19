@@ -12,6 +12,7 @@ public class UserListViewModel: NSObject {
     public typealias Observer<T> = (T) -> Void
     
     private let loader: UsersLoader
+    private let imageLoader: ImageLoader
     
     private(set) var filterKey: String!
     private(set) var users = [User]()
@@ -24,8 +25,9 @@ public class UserListViewModel: NSObject {
 
 
     
-    public init(loader: UsersLoader) {
+    public init(loader: UsersLoader, imageLoader: ImageLoader) {
         self.loader = loader
+        self.imageLoader = imageLoader
     }
     
     ///Load data from local if available, then load the data from API
@@ -53,7 +55,8 @@ public class UserListViewModel: NSObject {
                 }else{
                     self.users = users
                 }
-                self.userViewModels = users.map({$0.toCellModel()})
+                let imageLoader = self.imageLoader
+                self.userViewModels = users.map({$0.toCellModel(imageLoader: imageLoader)})
                 self.updateFilteredUsers(with: self.filterKey)
             case .failure(let _):
                 self.onError?("Unknown error when loading")
@@ -89,12 +92,11 @@ public class UserListViewModel: NSObject {
         }
         return false
     }
-    
 }
 
 extension User{
-    func toCellModel() -> UserCellViewModel{
-        let model = UserCellViewModel(loginName: loginName, detail: nil, avatarURL: avatarURL, profileURL: profileURL, notes: notes)
+    func toCellModel(imageLoader: ImageLoader) -> UserCellViewModel{
+        let model = UserCellViewModel(imageLoader:imageLoader, loginName: loginName, detail: nil, avatarURL: avatarURL, profileURL: profileURL, notes: notes)
         return model
     }
 }

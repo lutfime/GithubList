@@ -7,6 +7,6 @@
 
 import UIKit
 
-protocol ImageLoader{
+public protocol ImageLoader{
     func loadImage(_ url: URL, completion: @escaping (Result<UIImage, Error>) -> Void)
 }

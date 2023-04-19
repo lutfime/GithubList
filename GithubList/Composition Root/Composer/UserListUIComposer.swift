@@ -10,6 +10,7 @@ import UIKit
 class UserListUIComposer{
     public static func userListComposedWith(
         loader: UsersLoader,
+        imageLoader: ImageLoader,
         selection: @escaping (UserCellViewModel) -> (),
         internetConnectionUpdater: @escaping (InternetConnectionUpdater) -> ()
     ) -> UserListViewController {
@@ -17,7 +18,7 @@ class UserListUIComposer{
         let bundle = Bundle(for: UserListViewController.self)
         let storyboard = UIStoryboard(name: "Main", bundle: bundle)
         let controller = storyboard.instantiateViewController(identifier: "userList") { coder in
-            let viewModel = UserListViewModel(loader: MainQueueDispatchDecorator(decoratee: loader))
+            let viewModel = UserListViewModel(loader: MainQueueDispatchDecorator(decoratee: loader), imageLoader: imageLoader)
             return UserListViewController(coder: coder, viewModel: viewModel)
         } as! UserListViewController
         controller.selection = selection
