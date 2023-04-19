@@ -90,7 +90,7 @@ struct UserProfileView: View {
 
 struct UserProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        UserProfileView(viewModel: ProfileViewModel())
+        UserProfileView(viewModel: ProfileViewModel(loader: PlaceholderProfileLoader()))
     }
 }
 
@@ -184,3 +184,9 @@ extension View {
     }
 }
 #endif
+
+class PlaceholderProfileLoader: UserProfileLoader{
+    func loadUserProfile(loginName: String, completion: @escaping (Result<User, Error>) -> Void) {
+        completion(.success(User()))
+    }
+}

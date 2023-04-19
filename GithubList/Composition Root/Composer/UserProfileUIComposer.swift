@@ -13,7 +13,7 @@ class UserProfileUIComposer{
         viewModel: UserCellViewModel,
         saveUser: @escaping (User) -> ()
     ) -> UIHostingController<UserProfileView> {
-        let model = ProfileViewModel(service: MainQueueDispatchDecorator(decoratee: loader))
+        let model = ProfileViewModel(loader: MainQueueDispatchDecorator(decoratee: loader))
         var profileView = UserProfileView(viewModel: model)
         profileView.loginName = viewModel.loginName
         profileView.avatarURL = viewModel.avatarURL

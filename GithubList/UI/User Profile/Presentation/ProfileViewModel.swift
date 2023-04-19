@@ -10,7 +10,7 @@ import CoreData
 
 class ProfileViewModel: ObservableObject {
     
-    private let apiService: UserProfileLoader
+    private let loader: UserProfileLoader
     var onUserNeedSave: ((User) -> ())?
     
     private var isLoading = false
@@ -18,8 +18,8 @@ class ProfileViewModel: ObservableObject {
     @Published var userProfileViewModel: UserProfileViewModel!
     private(set) var user: User!
     
-    init(service: UserProfileLoader = APILoader(client: URLSessionHTTPClient())) {
-        self.apiService = service
+    init(loader: UserProfileLoader) {
+        self.loader = loader
     }
     
     func loadUserProfile(loginName: String){
@@ -28,7 +28,7 @@ class ProfileViewModel: ObservableObject {
         }
         
         isLoading = true
-        apiService.loadUserProfile(loginName: loginName) {[weak self] result in
+        loader.loadUserProfile(loginName: loginName) {[weak self] result in
             guard let self else {return}
             
             switch result {
