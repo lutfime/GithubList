@@ -10,8 +10,7 @@ import UIKit
 public struct UserCellViewModel: Hashable {
     let imageLoader: ImageLoader
     
-    public var loginName: String!
-    public var detail: String!
+    public let loginName: String
     
     public let avatarURL: String
     public let profileURL: String

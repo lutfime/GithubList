@@ -96,7 +96,7 @@ public class UserListViewModel: NSObject {
 
 extension User{
     func toCellModel(imageLoader: ImageLoader) -> UserCellViewModel{
-        let model = UserCellViewModel(imageLoader:imageLoader, loginName: loginName, detail: nil, avatarURL: avatarURL, profileURL: profileURL, notes: notes)
+        let model = UserCellViewModel(imageLoader:imageLoader, loginName: loginName, avatarURL: avatarURL, profileURL: profileURL, notes: notes)
         return model
     }
 }
