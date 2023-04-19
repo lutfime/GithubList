@@ -89,7 +89,7 @@ final class GithubListTests: XCTestCase {
         let getUsers = dataProvider.getUsers()
         XCTAssertNotNil(getUsers)
         XCTAssertTrue(getUsers?.count == 1)
-        XCTAssertTrue(user.id == (getUsers?.first!.userId)!)
+        XCTAssertTrue(user.id == (getUsers?.first!.id)!)
     }
     
     func testUpdateUser() {

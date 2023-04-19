@@ -8,7 +8,7 @@
 import CoreData
 import UIKit
 
-class UsersCoreDataRepository: UsersRepository {
+public class UsersCoreDataRepository: UsersRepository {
         // MARK: - Properties
     let coreDataStack: CoreDataStack
     weak var fetchedResultsControllerDelegate: NSFetchedResultsControllerDelegate?
@@ -75,8 +75,11 @@ class UsersCoreDataRepository: UsersRepository {
     public func getUsers() -> [User]? {
         let fetchRequest: NSFetchRequest<UserManagedObject> = UserManagedObject.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(UserManagedObject.userId), ascending: true)]
-        let managedUsers = try? fetchUsers(with: fetchRequest)
-        return managedUsers?.map{$0.toModel()}
+        if let managedUsers = try? fetchUsers(with: fetchRequest), managedUsers.count > 0{
+            return managedUsers.map{$0.toModel()}
+
+        }
+        return nil
     }
     
     public func save(_ users: [User]) {
