@@ -47,8 +47,8 @@ public class UserListViewController: UIViewController, UICollectionViewDelegate,
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if selectedIndexPath != nil{
-            //If selectedIndexPath not nil, it means that the indexPath has been selected. Reload collection view because data such as notes etc might be updated 
-            viewModel.updateFilteredUsers(with: searchBar.text)
+            viewModel.loadData()
+//            redisplayCell(selectedIndexPath)
         }
     }
     
@@ -152,6 +152,14 @@ public class UserListViewController: UIViewController, UICollectionViewDelegate,
         
         dataSource.apply(snapshot, animatingDifferences: animate)
         selectedIndexPath = nil
+    }
+    
+    func redisplayCell(_ indexPath: IndexPath){
+        var snapshot = dataSource.snapshot()
+        if let item = dataSource.itemIdentifier(for: indexPath){
+            snapshot.reloadItems([item])
+            dataSource.apply(snapshot)
+        }
     }
     
     // MARK:  Collection View delegate

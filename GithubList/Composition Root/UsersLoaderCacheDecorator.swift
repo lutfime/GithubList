@@ -27,7 +27,7 @@ public class UsersLoaderCacheDecorator: UsersLoader{
     }
 }
 
-extension APILoader{
+extension UsersLoader{
     func cachingUserListTo(_ coreDataStack: CoreDataStack) -> UsersLoader{
         return UsersLoaderCacheDecorator(loader: self, coreDataStack: coreDataStack)
     }
