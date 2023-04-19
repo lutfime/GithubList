@@ -75,7 +75,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let remoteLoader = APILoader(client: httpClient).cachingUserProfileTo(coreDataStack)
         let compositeLoader = UserProfileLoaderComposite(remoteLoader: remoteLoader, localLoader: localLoader)
         
-        let profileView = UserProfileUIComposer.userProfileComposedWith(loader: compositeLoader, viewModel: viewModel) {[coreDataStack] user in
+        let profileView = UserProfileUIComposer.userProfileComposedWith(
+            loader: compositeLoader,
+            imageLoader: makeImageLoader,
+            viewModel: viewModel) {[coreDataStack] user in
             let userProvider = UsersCoreDataRepository(coreDataStack: coreDataStack)
             userProvider.createOrUpdate(user: user)
             userProvider.coreDataStack.saveContext()

@@ -12,14 +12,16 @@ struct UserProfileView: View {
     var avatarURL: String!
     
     let viewModel: ProfileViewModel
+    let imageLoader: () -> ImageLoader
     
     @State var userProfileViewModel = UserProfileViewModel()
     @State var notes = ""
     @State var title = "Profile"
     @State private var showingAlert = false
     
-    init(viewModel: ProfileViewModel){
+    init(viewModel: ProfileViewModel, imageLoader: @escaping () -> ImageLoader){
         self.viewModel = viewModel
+        self.imageLoader = imageLoader
     }
     
     func loadData() {
@@ -32,8 +34,8 @@ struct UserProfileView: View {
         
         ScrollView{
             VStack{
-                if let avatarURL = avatarURL{
-                    ImageView(withURL: avatarURL)
+                if let avatarURL = URL(string: avatarURL){
+                    ImageView(withURL: avatarURL, imageLoader: imageLoader())
                 }else{
                     Image("emptyImage", bundle: .main).resizable().frame(height: 200)
                 }
@@ -90,17 +92,19 @@ struct UserProfileView: View {
 
 struct UserProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        UserProfileView(viewModel: ProfileViewModel(loader: PlaceholderProfileLoader()))
+        UserProfileView(viewModel: ProfileViewModel(loader: PlaceholderProfileLoader()), imageLoader: {PlaceholderImageLoader()})
     }
 }
 
 
 struct ImageView: View {
-    @ObservedObject var imageLoader:OldImageLoader
+    let imageLoader:ImageLoader
+    let url: URL
     @State var image:UIImage = UIImage()
 
-    init(withURL url:String) {
-        imageLoader = OldImageLoader(urlString:url)
+    init(withURL url:URL, imageLoader: ImageLoader) {
+        self.imageLoader = imageLoader
+        self.url = url
     }
 
     var body: some View {
@@ -110,11 +114,18 @@ struct ImageView: View {
             .aspectRatio(contentMode: .fill)
             .frame( height:200)
             .clipped()
-            .onReceive(imageLoader.$updatedImage) { image in
-                if let image{
-                    self.image = image
+            .onAppear {
+                imageLoader.loadImage(url) { result in
+                    if let image = try? result.get(){
+                        self.image = image
+                    }
                 }
             }
+//            .onReceive(imageLoader.$updatedImage) { image in
+//                if let image{
+//                    self.image = image
+//                }
+//            }
     }
 }
 
@@ -188,5 +199,11 @@ extension View {
 class PlaceholderProfileLoader: UserProfileLoader{
     func loadUserProfile(loginName: String, completion: @escaping (Result<User, Error>) -> Void) {
         completion(.success(User()))
+    }
+}
+
+class PlaceholderImageLoader: ImageLoader{
+    func loadImage(_ url: URL, completion: @escaping (Result<UIImage, Error>) -> Void) {
+        completion(.success(UIImage()))
     }
 }
