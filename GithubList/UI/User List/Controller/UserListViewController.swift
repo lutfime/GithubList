@@ -12,18 +12,18 @@ public class UserListViewController: UIViewController, UICollectionViewDelegate,
     
     @IBOutlet public private(set) weak var collectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
+    
+    public let viewModel: UserListViewModel
     let bottomInfoView = BottomInfoView(frame: CGRect.zero)
     var loadingIndicatorCell: LoadingIndicatorCell!
     
     lazy private(set) var dataSource: UICollectionViewDiffableDataSource<Int, UserCellViewModel> = {
         return configureDataSource()
     }()
-    var currentSnapshot: NSDiffableDataSourceSnapshot<Int, UserCellViewModel>! = nil
-    var selectedIndexPath: IndexPath!
+    var selectedIndexPath: IndexPath?
     
     public var selection: ((UserCellViewModel) -> ())?
     
-    public let viewModel: UserListViewModel
     
     // MARK:  Lifecycle
     
@@ -132,11 +132,11 @@ public class UserListViewController: UIViewController, UICollectionViewDelegate,
     }
     
     func display(_ users: [UserCellViewModel], animate: Bool = false){
-        currentSnapshot = NSDiffableDataSourceSnapshot<Int, UserCellViewModel>()
-        currentSnapshot.appendSections([0])
-        currentSnapshot.appendItems(users)
+        var snapshot = NSDiffableDataSourceSnapshot<Int, UserCellViewModel>()
+        snapshot.appendSections([0])
+        snapshot.appendItems(users)
         
-        dataSource.apply(self.currentSnapshot, animatingDifferences: animate)
+        dataSource.apply(snapshot, animatingDifferences: animate)
         selectedIndexPath = nil
     }
     
