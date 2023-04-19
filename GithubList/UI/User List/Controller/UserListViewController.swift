@@ -15,7 +15,9 @@ public class UserListViewController: UIViewController, UICollectionViewDelegate,
     let bottomInfoView = BottomInfoView(frame: CGRect.zero)
     var loadingIndicatorCell: LoadingIndicatorCell!
     
-    var dataSource: UICollectionViewDiffableDataSource<Int, UserCellViewModel>! = nil
+    lazy private(set) var dataSource: UICollectionViewDiffableDataSource<Int, UserCellViewModel> = {
+        return configureDataSource()
+    }()
     var currentSnapshot: NSDiffableDataSourceSnapshot<Int, UserCellViewModel>! = nil
     var selectedIndexPath: IndexPath!
     
@@ -52,7 +54,6 @@ public class UserListViewController: UIViewController, UICollectionViewDelegate,
     
     func setupView(){
         collectionView.collectionViewLayout = createLayout()
-        configureDataSource()
         collectionView.delegate = self
         collectionView.backgroundColor = UIColor.white
         
@@ -101,7 +102,7 @@ public class UserListViewController: UIViewController, UICollectionViewDelegate,
     }
     
     ///Configure datasource for the collection view
-    func configureDataSource(){
+    func configureDataSource() -> UICollectionViewDiffableDataSource<Int, UserCellViewModel>{
         //Register cells
         let cellItemRegistration = UICollectionView.CellRegistration<UserCell, UserCellViewModel>{ (cell, indexPath, item) in
             cell.configure(user: item, indexPath: indexPath)
@@ -112,7 +113,7 @@ public class UserListViewController: UIViewController, UICollectionViewDelegate,
             
         }
         
-        dataSource = UICollectionViewDiffableDataSource<Int, UserCellViewModel>(collectionView: collectionView) {(collectionView: UICollectionView, indexPath: IndexPath, item: UserCellViewModel) -> UICollectionViewCell? in
+        let dataSource = UICollectionViewDiffableDataSource<Int, UserCellViewModel>(collectionView: collectionView) {(collectionView: UICollectionView, indexPath: IndexPath, item: UserCellViewModel) -> UICollectionViewCell? in
             return collectionView.dequeueConfiguredReusableCell(using: cellItemRegistration, for: indexPath, item: item)
         }
         
@@ -127,6 +128,7 @@ public class UserListViewController: UIViewController, UICollectionViewDelegate,
             }
             return registrationView
         }
+        return dataSource
     }
     
     func display(_ users: [UserCellViewModel], animate: Bool = false){
@@ -134,7 +136,7 @@ public class UserListViewController: UIViewController, UICollectionViewDelegate,
         currentSnapshot.appendSections([0])
         currentSnapshot.appendItems(users)
         
-        self.dataSource.apply(self.currentSnapshot, animatingDifferences: animate)
+        dataSource.apply(self.currentSnapshot, animatingDifferences: animate)
         selectedIndexPath = nil
     }
     
