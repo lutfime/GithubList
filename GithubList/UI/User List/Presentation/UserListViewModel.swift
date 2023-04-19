@@ -12,7 +12,7 @@ public class UserListViewModel: NSObject {
     public typealias Observer<T> = (T) -> Void
     
     private let loader: UsersLoader
-    private let imageLoader: ImageLoader
+    private let imageLoader: () -> ImageLoader
     
     private(set) var filterKey: String!
     private(set) var users = [User]()
@@ -25,7 +25,7 @@ public class UserListViewModel: NSObject {
 
 
     
-    public init(loader: UsersLoader, imageLoader: ImageLoader) {
+    public init(loader: UsersLoader, imageLoader: @escaping () -> ImageLoader) {
         self.loader = loader
         self.imageLoader = imageLoader
     }
@@ -56,9 +56,9 @@ public class UserListViewModel: NSObject {
                     self.users = users
                 }
                 let imageLoader = self.imageLoader
-                self.userViewModels = users.map({$0.toCellModel(imageLoader: imageLoader)})
+                self.userViewModels = users.map({$0.toCellModel(imageLoader: imageLoader())})
                 self.updateFilteredUsers(with: self.filterKey)
-            case .failure(let _):
+            case .failure:
                 self.onError?("Unknown error when loading")
             }
             

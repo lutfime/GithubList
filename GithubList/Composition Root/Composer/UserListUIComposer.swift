@@ -10,7 +10,7 @@ import UIKit
 class UserListUIComposer{
     public static func userListComposedWith(
         loader: UsersLoader,
-        imageLoader: ImageLoader,
+        imageLoader: @escaping () -> ImageLoader,
         selection: @escaping (UserCellViewModel) -> (),
         internetConnectionUpdater: @escaping (InternetConnectionUpdater) -> ()
     ) -> UserListViewController {

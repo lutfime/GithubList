@@ -49,11 +49,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let remoteLoader = APILoader(client: URLSessionHTTPClient()).cachingUserListTo(coreDataStack)
         let compositeLoader = UsersLoaderComposite(localLoader: localLoader, remoteLoader: remoteLoader)
         
-        let localImageLoader = LocalImageLoader()
         
         let userListVC = UserListUIComposer.userListComposedWith(
             loader: compositeLoader,
-            imageLoader: localImageLoader,
+            imageLoader: makeImageLoader,
             selection: showUserProfile,
             internetConnectionUpdater: {[weak self] internetUpdater in
             self?.reachability.whenReachable = { reachability in
@@ -81,6 +80,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             userProvider.coreDataStack.saveContext()
         }
         navigationController.pushViewController(profileView, animated: true)
+    }
+    
+    // MARK: Helpers
+    
+    func makeImageLoader() -> ImageLoader{
+        let localImageLoader = LocalImageLoader()
+        return localImageLoader
     }
 }
 
