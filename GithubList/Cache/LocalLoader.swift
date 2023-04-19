@@ -16,17 +16,23 @@ class LocalLoader: UsersLoader, UserProfileLoader{
     }
     
     func loadGithubUsers(startUserIndex: Int, completion: @escaping (Result<[User], Error>) -> Void) {
-        let users = usersRepository.getUsers()
-        completion(.success(users ?? []))
+        DispatchQueue.global().async { [weak self] in
+            guard let self else {return}
+            let users = self.usersRepository.getUsers()
+            completion(.success(users ?? []))
+        }
     }
     
     struct NotFound: Error {}
 
     func loadUserProfile(loginName: String, completion: @escaping (Result<User, Error>) -> Void) {
-        if let user = usersRepository.getUser(with: loginName){
-            completion(.success(user))
-        }else{
-            completion(.failure(NotFound()))
+        DispatchQueue.global().async { [weak self] in
+            guard let self else {return}
+            if let user = self.usersRepository.getUser(with: loginName){
+                completion(.success(user))
+            }else{
+                completion(.failure(NotFound()))
+            }
         }
     }
     

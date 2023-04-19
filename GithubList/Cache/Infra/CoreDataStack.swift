@@ -40,7 +40,7 @@ public class CoreDataStack: NSObject {
     }
     
     @objc func saveContext() {
-        backgroundContext.performAndWait{
+        backgroundContext.perform{
             guard self.backgroundContext.hasChanges else {
                 return
             }
