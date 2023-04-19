@@ -27,3 +27,9 @@ public class ImageLoaderCacheDecorator: ImageLoader{
     }
 }
 
+extension ImageLoader{
+    func cachingTo(_ cache: LocalImageLoader) -> ImageLoader{
+        return ImageLoaderCacheDecorator(loader: self, cache: cache)
+    }
+}
+

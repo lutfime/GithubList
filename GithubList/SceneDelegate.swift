@@ -88,7 +88,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func makeImageLoader() -> ImageLoader{
         let localImageLoader = LocalImageLoader()
         let remoteImageLoader = RemoteImageLoader(client: httpClient)
-        return MainQueueDispatchDecorator(decoratee: remoteImageLoader)
+        let loader = localImageLoader
+            .fallbackTo(remoteImageLoader
+                .cachingTo(localImageLoader))
+        
+        return MainQueueDispatchDecorator(decoratee: loader)
     }
 }
 

@@ -25,5 +25,10 @@ public class ImageLoaderFallbackComposite: ImageLoader{
             }
         }
     }
-    
+}
+
+extension ImageLoader{
+    func fallbackTo(_ fallback: ImageLoader) -> ImageLoader{
+        return ImageLoaderFallbackComposite(mainLoader: self, fallbackLoader: fallback)
+    }
 }
