@@ -26,6 +26,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             fatalError("Cannot initialize core data")
         }
     }()
+    
+    private lazy var usersRepository: UsersRepository = {
+        return UsersCoreDataRepository(coreDataStack: coreDataStack)
+    }()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
@@ -35,7 +39,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func configureWindow() {
-        let localLoader = LocalLoader(coreDataStack: coreDataStack)
+        let localLoader = LocalLoader(usersRepository: usersRepository)
         let remoteLoader = APILoader(client: URLSessionHTTPClient()).cachingUserListTo(coreDataStack)
         let compositeLoader = UsersLoaderComposite(localLoader: localLoader, remoteLoader: remoteLoader)
         
@@ -48,7 +52,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func showUserProfile(_ viewModel: UserCellViewModel){
-        let localLoader = LocalLoader(coreDataStack: coreDataStack)
+        let localLoader = LocalLoader(usersRepository: usersRepository)
         let remoteLoader = APILoader(client: URLSessionHTTPClient()).cachingUserProfileTo(coreDataStack)
         let compositeLoader = UserProfileLoaderComposite(remoteLoader: remoteLoader, localLoader: localLoader)
         

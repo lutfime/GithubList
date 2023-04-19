@@ -9,29 +9,23 @@ import Foundation
 import CoreData
 
 class LocalLoader: UsersLoader, UserProfileLoader{
-    private let dataProvider: UsersCoreDataRepository
+    private let usersRepository: UsersRepository
 
-    init(coreDataStack: CoreDataStack) {
-        self.dataProvider = UsersCoreDataRepository(coreDataStack: coreDataStack)
+    init(usersRepository: UsersRepository) {
+        self.usersRepository = usersRepository
     }
     
     func loadGithubUsers(startUserIndex: Int, completion: @escaping (Result<[User], Error>) -> Void) {
-        let users = dataProvider.getUsers()?.map({$0.toModel()})
+        let users = usersRepository.getUsers()
         completion(.success(users ?? []))
     }
     
     struct NotFound: Error {}
 
     func loadUserProfile(loginName: String, completion: @escaping (Result<User, Error>) -> Void) {
-        let fetchRequest: NSFetchRequest<UserManagedObject> = UserManagedObject.fetchRequest()
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(UserManagedObject.loginName), loginName)
-        fetchRequest.predicate = predicate
-        let results = try? dataProvider.coreDataStack.backgroundContext.fetch(fetchRequest)
-        
-        if let userProfile = results?.first?.toModel(){
-            completion(.success(userProfile))
-        }
-        else{
+        if let user = usersRepository.getUser(with: loginName){
+            completion(.success(user))
+        }else{
             completion(.failure(NotFound()))
         }
     }
