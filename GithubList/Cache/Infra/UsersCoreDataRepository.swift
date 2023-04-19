@@ -8,7 +8,7 @@
 import CoreData
 import UIKit
 
-class UsersCoreDataRepository {
+class UsersCoreDataRepository: UsersRepository {
         // MARK: - Properties
     let coreDataStack: CoreDataStack
     weak var fetchedResultsControllerDelegate: NSFetchedResultsControllerDelegate?
@@ -68,5 +68,43 @@ class UsersCoreDataRepository {
     public func update(_ userManagedObject: UserManagedObject) -> UserManagedObject {
       coreDataStack.saveContext()
       return userManagedObject
+    }
+    
+    // MARK: Users Repository
+    
+    public func getUsers() -> [User]? {
+        let fetchRequest: NSFetchRequest<UserManagedObject> = UserManagedObject.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(UserManagedObject.userId), ascending: true)]
+        let managedUsers = try? fetchUsers(with: fetchRequest)
+        return managedUsers?.map{$0.toModel()}
+    }
+    
+    public func save(_ users: [User]) {
+        for user in users {
+            let managedUser = try? fetchOrCreateNewUser(user)
+            managedUser?.update(user: user, includeNotes: true)
+        }
+        coreDataStack.saveContext()
+    }
+    
+    private func fetchOrCreateNewUser(_ user: User) throws -> UserManagedObject{
+        if let managedUser = try fetchUser(user){
+            return managedUser
+        }else{
+            let managedUser = UserManagedObject(context: coreDataStack.backgroundContext)
+            return managedUser
+        }
+    }
+    
+    private func fetchUser(_ user: User) throws -> UserManagedObject?{
+        let fetchRequest: NSFetchRequest<UserManagedObject> = UserManagedObject.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "%K == %i", #keyPath(UserManagedObject.userId), user.id)
+        let users = try fetchUsers(with: fetchRequest)
+        return users.first
+    }
+    
+    private func fetchUsers(with fetchRequest: NSFetchRequest<UserManagedObject>) throws -> [UserManagedObject]{
+        let results = try coreDataStack.mainContext.fetch(fetchRequest)
+        return results
     }
 }
