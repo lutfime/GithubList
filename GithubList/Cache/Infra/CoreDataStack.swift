@@ -19,7 +19,10 @@ public class CoreDataStack: NSObject {
 
     let storeContainer: NSPersistentContainer
 
-    lazy var mainContext: NSManagedObjectContext = self.storeContainer.viewContext
+    lazy var mainContext: NSManagedObjectContext = {
+        let context = self.storeContainer.viewContext
+        return context
+    }()
     public lazy var backgroundContext: NSManagedObjectContext = {
         let context = self.storeContainer.newBackgroundContext()
         context.automaticallyMergesChangesFromParent = true
@@ -37,10 +40,16 @@ public class CoreDataStack: NSObject {
         } catch {
             throw StoreError.failedToLoadPersistentContainer(error)
         }
+        super.init()
+        NotificationCenter.default.addObserver(self, selector: #selector(contextDidSave), name: Notification.Name.NSManagedObjectContextDidSave, object: nil)
+    }
+    
+    deinit{
+        NotificationCenter.default.removeObserver(self)
     }
     
     @objc func saveContext() {
-        backgroundContext.perform{
+        backgroundContext.performAndWait{
             guard self.backgroundContext.hasChanges else {
                 return
             }
@@ -50,6 +59,10 @@ public class CoreDataStack: NSObject {
                 print("Unresolved error \(error), \(error.userInfo)")
             }
         }
+    }
+    
+    @objc func contextDidSave(_ notf: Notification){
+        self.mainContext.mergeChanges(fromContextDidSave: notf)
     }
 }
 

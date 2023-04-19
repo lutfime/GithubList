@@ -47,7 +47,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func configureWindow() {
         let localLoader = LocalLoader(usersRepository: usersRepository)
-        let remoteLoader = APILoader(client: httpClient)
+        let remoteLoader = APILoader(client: httpClient).delayingCompletion(by: 2)
         let compositeLoader = UsersLoaderComposite(localLoader: localLoader, remoteLoader: remoteLoader).cachingUserListTo(coreDataStack)
         
         let userListVC = UserListUIComposer.userListComposedWith(

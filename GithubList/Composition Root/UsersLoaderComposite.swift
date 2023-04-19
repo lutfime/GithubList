@@ -42,9 +42,9 @@ public class UsersLoaderComposite: UsersLoader{
         
         localLoader.loadGithubUsers(startUserIndex: startUserIndex) { result in
             localResult = result
-            if remoteResult == nil{
+            if remoteResult == nil, let users = try? result.get().filter({$0.id > startUserIndex}), users.count > 0{
                 //Complete with local result first
-                completion(result)
+                completion(.success(users))
             }else{
                 completeWhenBothLoaderCompleted()
             }
