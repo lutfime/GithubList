@@ -17,8 +17,8 @@ final class GithubListTests: XCTestCase {
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
         mockAPIClient = MockAPIClient()
-        userListViewModel = UserListViewModel(loader: mockAPIClient)
-        profileViewModel = ProfileViewModel(service: mockAPIClient)
+        userListViewModel = UserListViewModel(loader: mockAPIClient, imageLoader: {MockImageLoader()})
+        profileViewModel = ProfileViewModel(loader: mockAPIClient)
     }
 
     func testFetchUsers() {
@@ -37,4 +37,12 @@ final class GithubListTests: XCTestCase {
         XCTAssertEqual(user!.followerCount, 23256)
     }
 
+}
+
+class MockImageLoader: ImageLoader{
+    func loadImage(_ url: URL, completion: @escaping (Result<UIImage, Error>) -> Void) {
+        completion(.success(UIImage()))
+    }
+    
+    
 }

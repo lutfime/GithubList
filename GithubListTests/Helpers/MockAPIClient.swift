@@ -5,7 +5,8 @@
 //  Created by Wan Ahmad Lutfi on 24/11/2022.
 //
 
-import UIKit
+import Foundation
+import GithubList
 
 public class MockAPIClient: UserAndProfileLoader {
     public func loadGithubUsers(startUserIndex: Int, completion: @escaping (Result<[User], Error>) -> Void) {

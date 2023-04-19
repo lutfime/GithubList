@@ -41,7 +41,7 @@ class UserListViewModelTests: XCTestCase {
     
     
     func makeSUT() -> UserListViewModel{
-        let sut = UserListViewModel(loader: UsersLoaderStub())
+        let sut = UserListViewModel(loader: UsersLoaderStub(), imageLoader: {MockImageLoader()})
         return sut
     }
     

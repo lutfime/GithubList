@@ -34,7 +34,6 @@
 		C1DDC8B7292EE5F300BB101F /* userProfile.json in Resources */ = {isa = PBXBuildFile; fileRef = C1DDC8B6292EE5F300BB101F /* userProfile.json */; };
 		C1DDC8B8292EEF9D00BB101F /* userProfile.json in Resources */ = {isa = PBXBuildFile; fileRef = C1DDC8B6292EE5F300BB101F /* userProfile.json */; };
 		C1DDC8B9292EEF9F00BB101F /* users.json in Resources */ = {isa = PBXBuildFile; fileRef = C1DDC8B4292EE18C00BB101F /* users.json */; };
-		C1DDC8BB292EFD9300BB101F /* MockAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DDC8B2292EE15400BB101F /* MockAPIClient.swift */; };
 		C1FD891229EE0A3F00358E82 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD891129EE0A3F00358E82 /* HTTPClient.swift */; };
 		C1FD891429EE295000358E82 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD891329EE295000358E82 /* URLSessionHTTPClient.swift */; };
 		C1FD891929EE2CD200358E82 /* UserListSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD891829EE2CD200358E82 /* UserListSnapshotTests.swift */; };
@@ -65,6 +64,7 @@
 		C1FD896129EF9EE900358E82 /* RemoteImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD896029EF9EE800358E82 /* RemoteImageLoader.swift */; };
 		C1FD896329EFA87B00358E82 /* ImageLoaderFallbackComposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD896229EFA87B00358E82 /* ImageLoaderFallbackComposite.swift */; };
 		C1FD896529EFA8ED00358E82 /* ImageLoaderCacheDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD896429EFA8ED00358E82 /* ImageLoaderCacheDecorator.swift */; };
+		C1FD896629EFADB200358E82 /* MockAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DDC8B2292EE15400BB101F /* MockAPIClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -199,7 +199,6 @@
 			isa = PBXGroup;
 			children = (
 				C1C888F12925F2F100FD832F /* APILoader.swift */,
-				C1DDC8B2292EE15400BB101F /* MockAPIClient.swift */,
 				C1FD891129EE0A3F00358E82 /* HTTPClient.swift */,
 				C1FD891329EE295000358E82 /* URLSessionHTTPClient.swift */,
 				C1FD896029EF9EE800358E82 /* RemoteImageLoader.swift */,
@@ -287,6 +286,7 @@
 		C1FD892F29EE49BC00358E82 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				C1DDC8B2292EE15400BB101F /* MockAPIClient.swift */,
 				C1DDC8B6292EE5F300BB101F /* userProfile.json */,
 				C1DDC8B4292EE18C00BB101F /* users.json */,
 				C1FD893029EE49D300358E82 /* UsersLoaderStub.swift */,
@@ -543,7 +543,6 @@
 				C1C888FA292B1A2200FD832F /* UserListViewController.swift in Sources */,
 				C1FD893529EE56F900358E82 /* UsersLoaderCacheDecorator.swift in Sources */,
 				C1FD894729EF5B7900358E82 /* UsersRepository.swift in Sources */,
-				C1DDC8BB292EFD9300BB101F /* MockAPIClient.swift in Sources */,
 				C1DDC898292DC2BC00BB101F /* BottomInfoView.swift in Sources */,
 				C1FD893B29EE5F9100358E82 /* UserProfileLoaderComposite.swift in Sources */,
 				C1FD891429EE295000358E82 /* URLSessionHTTPClient.swift in Sources */,
@@ -585,6 +584,7 @@
 				C1FD892E29EE492B00358E82 /* UserListViewModelTests.swift in Sources */,
 				C1FD891E29EE2D2200358E82 /* UIViewController+Snapshot.swift in Sources */,
 				C1DDC8A6292DE23A00BB101F /* GithubListTests.swift in Sources */,
+				C1FD896629EFADB200358E82 /* MockAPIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
