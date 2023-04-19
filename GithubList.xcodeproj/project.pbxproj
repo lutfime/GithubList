@@ -172,11 +172,10 @@
 			children = (
 				C1C88900292B1F7800FD832F /* Helpers */,
 				C1FD893629EE59AA00358E82 /* Composition Root */,
+				C1C888F3292615AB00FD832F /* Model */,
 				C1C888F02925F2B000FD832F /* API */,
 				C1DDC889292CF87E00BB101F /* Cache */,
-				C1C888FD292B1D6800FD832F /* ViewModel */,
-				C1C888F8292B17D900FD832F /* View */,
-				C1C888F3292615AB00FD832F /* Model */,
+				C1FD894D29EF897F00358E82 /* UI */,
 				C1C888D92925EE6D00FD832F /* AppDelegate.swift */,
 				C1C888DB2925EE6D00FD832F /* SceneDelegate.swift */,
 				C1C888DF2925EE6D00FD832F /* Main.storyboard */,
@@ -208,27 +207,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		C1C888F8292B17D900FD832F /* View */ = {
-			isa = PBXGroup;
-			children = (
-				C1DDC896292DC2AA00BB101F /* Accessories */,
-				C1C88914292B6CED00FD832F /* User List */,
-				C1C88915292B6D0300FD832F /* User Profile */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		C1C888FD292B1D6800FD832F /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				C1C88904292B282800FD832F /* UserCellViewModel.swift */,
-				C1C888FE292B1D7800FD832F /* UserListViewModel.swift */,
-				C1DDC887292CD32F00BB101F /* UserProfileViewModel.swift */,
-				C1C8891A292C77FC00FD832F /* ProfileViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		C1C88900292B1F7800FD832F /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,24 +227,6 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		C1C88914292B6CED00FD832F /* User List */ = {
-			isa = PBXGroup;
-			children = (
-				C1C888F9292B1A2200FD832F /* UserListViewController.swift */,
-				C1C888FB292B1C2C00FD832F /* UserCell.swift */,
-				C1C88912292B619900FD832F /* LoadingIndicatorCell.swift */,
-			);
-			path = "User List";
-			sourceTree = "<group>";
-		};
-		C1C88915292B6D0300FD832F /* User Profile */ = {
-			isa = PBXGroup;
-			children = (
-				C1C88918292C3F7D00FD832F /* UserProfileView.swift */,
-			);
-			path = "User Profile";
-			sourceTree = "<group>";
-		};
 		C1DDC889292CF87E00BB101F /* Cache */ = {
 			isa = PBXGroup;
 			children = (
@@ -284,14 +244,6 @@
 				C1C8890F292B3E1F00FD832F /* UIImage+Invert.swift */,
 			);
 			path = Extension;
-			sourceTree = "<group>";
-		};
-		C1DDC896292DC2AA00BB101F /* Accessories */ = {
-			isa = PBXGroup;
-			children = (
-				C1DDC897292DC2BC00BB101F /* BottomInfoView.swift */,
-			);
-			path = Accessories;
 			sourceTree = "<group>";
 		};
 		C1DDC8A4292DE23A00BB101F /* GithubListTests */ = {
@@ -384,6 +336,70 @@
 				C1FD894929EF5DC900358E82 /* UserManagedObjectHelpers.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		C1FD894D29EF897F00358E82 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				C1FD894E29EF899D00358E82 /* User List */,
+				C1FD895029EF89D900358E82 /* User Profile */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		C1FD894E29EF899D00358E82 /* User List */ = {
+			isa = PBXGroup;
+			children = (
+				C1FD895229EF8A0300358E82 /* Presentation */,
+				C1FD895129EF89FC00358E82 /* Controller */,
+				C1FD894F29EF89BD00358E82 /* Views */,
+			);
+			path = "User List";
+			sourceTree = "<group>";
+		};
+		C1FD894F29EF89BD00358E82 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C1C888FB292B1C2C00FD832F /* UserCell.swift */,
+				C1DDC897292DC2BC00BB101F /* BottomInfoView.swift */,
+				C1C88912292B619900FD832F /* LoadingIndicatorCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C1FD895029EF89D900358E82 /* User Profile */ = {
+			isa = PBXGroup;
+			children = (
+				C1FD895329EF8A0F00358E82 /* Presentation */,
+				C1C88918292C3F7D00FD832F /* UserProfileView.swift */,
+			);
+			path = "User Profile";
+			sourceTree = "<group>";
+		};
+		C1FD895129EF89FC00358E82 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C1C888F9292B1A2200FD832F /* UserListViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		C1FD895229EF8A0300358E82 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				C1C88904292B282800FD832F /* UserCellViewModel.swift */,
+				C1C888FE292B1D7800FD832F /* UserListViewModel.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		C1FD895329EF8A0F00358E82 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				C1DDC887292CD32F00BB101F /* UserProfileViewModel.swift */,
+				C1C8891A292C77FC00FD832F /* ProfileViewModel.swift */,
+			);
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
