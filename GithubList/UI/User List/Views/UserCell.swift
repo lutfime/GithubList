@@ -104,7 +104,7 @@ class UserCell: UICollectionViewCell {
         }else{
             noteImageView.isHidden = true
         }
-        if let url = URL(string: user.avatarURL){
+        if let avatarURL = user.avatarURL, let url = URL(string: avatarURL){
             user.imageLoader.loadImage(url) {[weak self] result in
                 guard let self else {return}
                 

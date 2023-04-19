@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C143F33729EFC776007D6C13 /* UsersLoaderDelayDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C143F33629EFC776007D6C13 /* UsersLoaderDelayDecorator.swift */; };
 		C1C888DA2925EE6D00FD832F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C888D92925EE6D00FD832F /* AppDelegate.swift */; };
 		C1C888DC2925EE6D00FD832F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C888DB2925EE6D00FD832F /* SceneDelegate.swift */; };
 		C1C888E12925EE6D00FD832F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1C888DF2925EE6D00FD832F /* Main.storyboard */; };
@@ -79,6 +80,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C143F33629EFC776007D6C13 /* UsersLoaderDelayDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersLoaderDelayDecorator.swift; sourceTree = "<group>"; };
 		C1C888D62925EE6D00FD832F /* GithubList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1C888D92925EE6D00FD832F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C1C888DB2925EE6D00FD832F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 				C1FD895429EF90A700358E82 /* Internet Updater */,
 				C1FD893729EE5A8900358E82 /* Composer */,
 				C1FD893429EE56F900358E82 /* UsersLoaderCacheDecorator.swift */,
+				C143F33629EFC776007D6C13 /* UsersLoaderDelayDecorator.swift */,
 				C1FD892829EE40AA00358E82 /* UsersLoaderComposite.swift */,
 				C1FD893A29EE5F9100358E82 /* UserProfileLoaderComposite.swift */,
 				C1FD894329EE7A5A00358E82 /* UserProfileLoaderCacheDecorator.swift */,
@@ -559,6 +562,7 @@
 				C1C888DA2925EE6D00FD832F /* AppDelegate.swift in Sources */,
 				C1FD896129EF9EE900358E82 /* RemoteImageLoader.swift in Sources */,
 				C1FD892729EE3B6A00358E82 /* LocalLoader.swift in Sources */,
+				C143F33729EFC776007D6C13 /* UsersLoaderDelayDecorator.swift in Sources */,
 				C1C88919292C3F7D00FD832F /* UserProfileView.swift in Sources */,
 				C1FD894429EE7A5A00358E82 /* UserProfileLoaderCacheDecorator.swift in Sources */,
 				C1C888F22925F2F100FD832F /* APILoader.swift in Sources */,

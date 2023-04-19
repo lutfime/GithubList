@@ -12,8 +12,8 @@ public struct UserCellViewModel: Hashable {
     
     public let loginName: String
     
-    public let avatarURL: String
-    public let profileURL: String
+    public let avatarURL: String?
+    public let profileURL: String?
     public var notes: String?
     
     public func hash(into hasher: inout Hasher) {
