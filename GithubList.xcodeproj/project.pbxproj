@@ -62,6 +62,8 @@
 		C1FD894A29EF5DC900358E82 /* UserManagedObjectHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD894929EF5DC900358E82 /* UserManagedObjectHelpers.swift */; };
 		C1FD894C29EF805300358E82 /* UsersCoreDataRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD894B29EF805300358E82 /* UsersCoreDataRepositoryTests.swift */; };
 		C1FD895629EF90B800358E82 /* InternetConnectionUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD895529EF90B800358E82 /* InternetConnectionUpdater.swift */; };
+		C1FD895929EF9C9000358E82 /* UsersLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD895829EF9C9000358E82 /* UsersLoader.swift */; };
+		C1FD895B29EF9C9900358E82 /* UserProfileLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD895A29EF9C9900358E82 /* UserProfileLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +133,8 @@
 		C1FD894929EF5DC900358E82 /* UserManagedObjectHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagedObjectHelpers.swift; sourceTree = "<group>"; };
 		C1FD894B29EF805300358E82 /* UsersCoreDataRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersCoreDataRepositoryTests.swift; sourceTree = "<group>"; };
 		C1FD895529EF90B800358E82 /* InternetConnectionUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetConnectionUpdater.swift; sourceTree = "<group>"; };
+		C1FD895829EF9C9000358E82 /* UsersLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersLoader.swift; sourceTree = "<group>"; };
+		C1FD895A29EF9C9900358E82 /* UserProfileLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +176,7 @@
 		C1C888D82925EE6D00FD832F /* GithubList */ = {
 			isa = PBXGroup;
 			children = (
+				C1FD895729EF9C8200358E82 /* Feature */,
 				C1C88900292B1F7800FD832F /* Helpers */,
 				C1FD893629EE59AA00358E82 /* Composition Root */,
 				C1C888F3292615AB00FD832F /* Model */,
@@ -413,6 +418,15 @@
 			path = "Internet Updater";
 			sourceTree = "<group>";
 		};
+		C1FD895729EF9C8200358E82 /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+				C1FD895829EF9C9000358E82 /* UsersLoader.swift */,
+				C1FD895A29EF9C9900358E82 /* UserProfileLoader.swift */,
+			);
+			path = Feature;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -523,10 +537,12 @@
 				C1DDC88F292CFF5100BB101F /* CoreDataStack.swift in Sources */,
 				C1FD894229EE77F400358E82 /* MainQueueDispatchDecorator.swift in Sources */,
 				C1DDC88D292CFD5100BB101F /* UserManagedObject.swift in Sources */,
+				C1FD895929EF9C9000358E82 /* UsersLoader.swift in Sources */,
 				C1FD894029EE773D00358E82 /* UserProfileUIComposer.swift in Sources */,
 				C1FD893E29EE61F900358E82 /* User+ProfileCheck.swift in Sources */,
 				C1FD891229EE0A3F00358E82 /* HTTPClient.swift in Sources */,
 				C1FD892929EE40AA00358E82 /* UsersLoaderComposite.swift in Sources */,
+				C1FD895B29EF9C9900358E82 /* UserProfileLoader.swift in Sources */,
 				C1C888FC292B1C2C00FD832F /* UserCell.swift in Sources */,
 				C1C888FA292B1A2200FD832F /* UserListViewController.swift in Sources */,
 				C1FD893529EE56F900358E82 /* UsersLoaderCacheDecorator.swift in Sources */,
