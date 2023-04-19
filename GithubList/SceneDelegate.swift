@@ -14,6 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     let navigationController = UINavigationController()
     
+    let httpClient = URLSessionHTTPClient()
     let localStoreURL = NSPersistentContainer
         .defaultDirectoryURL()
         .appendingPathComponent("user-store.sqlite")
@@ -46,7 +47,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func configureWindow() {
         let localLoader = LocalLoader(usersRepository: usersRepository)
-        let remoteLoader = APILoader(client: URLSessionHTTPClient()).cachingUserListTo(coreDataStack)
+        let remoteLoader = APILoader(client: httpClient).cachingUserListTo(coreDataStack)
         let compositeLoader = UsersLoaderComposite(localLoader: localLoader, remoteLoader: remoteLoader)
         
         
@@ -71,7 +72,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func showUserProfile(_ viewModel: UserCellViewModel){
         let localLoader = LocalLoader(usersRepository: usersRepository)
-        let remoteLoader = APILoader(client: URLSessionHTTPClient()).cachingUserProfileTo(coreDataStack)
+        let remoteLoader = APILoader(client: httpClient).cachingUserProfileTo(coreDataStack)
         let compositeLoader = UserProfileLoaderComposite(remoteLoader: remoteLoader, localLoader: localLoader)
         
         let profileView = UserProfileUIComposer.userProfileComposedWith(loader: compositeLoader, viewModel: viewModel) {[coreDataStack] user in
@@ -86,7 +87,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func makeImageLoader() -> ImageLoader{
         let localImageLoader = LocalImageLoader()
-        return localImageLoader
+        let remoteImageLoader = RemoteImageLoader(client: httpClient)
+        return MainQueueDispatchDecorator(decoratee: remoteImageLoader)
     }
 }
 

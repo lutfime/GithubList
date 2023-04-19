@@ -9,7 +9,6 @@ import UIKit
 
 public struct UserCellViewModel: Hashable {
     let imageLoader: ImageLoader
-    let identifier = UUID()
     
     public var loginName: String!
     public var detail: String!
@@ -19,7 +18,7 @@ public struct UserCellViewModel: Hashable {
     public var notes: String!
     
     public func hash(into hasher: inout Hasher) {
-        return hasher.combine(identifier)
+        return hasher.combine(loginName)
     }
     
     public static func == (lhs: UserCellViewModel, rhs: UserCellViewModel) -> Bool {

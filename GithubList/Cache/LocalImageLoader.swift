@@ -7,11 +7,11 @@
 
 import UIKit
 
-class LocalImageLoader: ImageLoader{
+public class LocalImageLoader: ImageLoader{
 
     struct NotFound: Error {}
 
-    func loadImage(_ url: URL, completion: @escaping (Result<UIImage, Error>) -> Void) {
+    public func loadImage(_ url: URL, completion: @escaping (Result<UIImage, Error>) -> Void) {
         if let image = image(for: url.lastPathComponent){
             completion(.success(image))
         }else{
@@ -33,8 +33,13 @@ class LocalImageLoader: ImageLoader{
     
     // MARK: Save Cache
     
+    public func saveImage(_ image: UIImage, url: URL){
+        let identifier = url.lastPathComponent
+        cache(image: image, identifier: identifier)
+    }
+    
     ///Cache the image to disk
-    public func cache(image: UIImage, identifier: String) {
+    private func cache(image: UIImage, identifier: String) {
         let newIdentifier = identifier.replacingOccurrences(of: "/", with: "_", options: [])
         
         let dir = cacheDirectory()

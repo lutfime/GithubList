@@ -5,7 +5,7 @@
 //  Created by Wan Ahmad Lutfi on 18/04/2023.
 //
 
-import Foundation
+import UIKit
 
 final class MainQueueDispatchDecorator<T> {
     private let decoratee: T
@@ -36,6 +36,16 @@ extension MainQueueDispatchDecorator: UserProfileLoader where T == UserProfileLo
         decoratee.loadUserProfile(loginName: loginName) {[weak self] result in
             self?.dispatch { completion(result) }
 
+        }
+    }
+}
+
+extension MainQueueDispatchDecorator: ImageLoader where T == ImageLoader{
+    func loadImage(_ url: URL, completion: @escaping (Result<UIImage, Error>) -> Void) {
+        decoratee.loadImage(url) {[weak self] result in
+            self?.dispatch {
+                completion(result)
+            }
         }
     }
 }
