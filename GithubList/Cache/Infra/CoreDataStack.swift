@@ -20,7 +20,7 @@ public class CoreDataStack: NSObject {
     let storeContainer: NSPersistentContainer
 
     lazy var mainContext: NSManagedObjectContext = self.storeContainer.viewContext
-    lazy var backgroundContext: NSManagedObjectContext = {
+    public lazy var backgroundContext: NSManagedObjectContext = {
         let context = self.storeContainer.newBackgroundContext()
         context.automaticallyMergesChangesFromParent = true
         return context

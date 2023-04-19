@@ -11,14 +11,14 @@ import GithubList
 class UsersCoreDataRepositoryTests: XCTestCase{
     
     func test_get_deliversEmptyOnEmptyCache() {
-        let sut = makeSUT()
-        
+        let (sut, _) = makeSUT()
+
         let users = sut.getUsers()
         XCTAssertNil(users, "Expected no users on empty cache")
     }
     
     func test_saveUser_deliversUserCorrectly() {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
 
         let user = makeUser()
         sut.save([user])
@@ -31,7 +31,7 @@ class UsersCoreDataRepositoryTests: XCTestCase{
     }
     
     func test_updateUser_deliversUserCorrectly() {
-        let sut = makeSUT()
+        let (sut, _) = makeSUT()
 
         let user = makeUser(notes: "a note")
         sut.save([user])
@@ -47,13 +47,29 @@ class UsersCoreDataRepositoryTests: XCTestCase{
         XCTAssertEqual(receivedUpdatedUser!.notes, "Updated notes", "Expected received user to be updated with new notes")
     }
     
+    func test_backgroundContext_didSavedfterSavingUser() {
+        let (sut, coreDataStack) = makeSUT()
+        
+        expectation(
+          forNotification: .NSManagedObjectContextDidSave,
+          object: coreDataStack.backgroundContext) { _ in
+            return true
+        }
+        
+        sut.save([makeUser()])
+        
+      waitForExpectations(timeout: 2.0) { error in
+        XCTAssertNil(error, "Save did not occur")
+      }
+    }
+    
     // MARK:  Helpers
     
-    func makeSUT() -> UsersRepository{
+    func makeSUT() -> (UsersRepository, CoreDataStack){
         let inMemoryStoreURL = URL(fileURLWithPath: "/dev/null")
         let coreDataStack = try! CoreDataStack(storeURL: inMemoryStoreURL)
         let sut = UsersCoreDataRepository(coreDataStack: coreDataStack)
-        return sut
+        return (sut, coreDataStack)
     }
     
     func makeUser(notes: String = "test notes") -> User{
