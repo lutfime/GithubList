@@ -8,8 +8,8 @@
 import UIKit
 import Combine
 
-class ImageLoader: ObservableObject {
-    static let shared = ImageLoader()
+class OldImageLoader: ObservableObject {
+    static let shared = OldImageLoader()
     
     private var runningRequests = [UUID: URLSessionDataTask]()
     private var uuidMap = [UIImageView: UUID]()
@@ -29,7 +29,7 @@ class ImageLoader: ObservableObject {
     
     init(urlString:String) {
         guard let url = URL(string: urlString) else { return }
-        _ = ImageLoader.shared.loadImage(url) { result in
+        _ = OldImageLoader.shared.loadImage(url) { result in
             switch result {
             case .success(let image):
                 self.updatedImage = image

@@ -96,11 +96,11 @@ struct UserProfileView_Previews: PreviewProvider {
 
 
 struct ImageView: View {
-    @ObservedObject var imageLoader:ImageLoader
+    @ObservedObject var imageLoader:OldImageLoader
     @State var image:UIImage = UIImage()
 
     init(withURL url:String) {
-        imageLoader = ImageLoader(urlString:url)
+        imageLoader = OldImageLoader(urlString:url)
     }
 
     var body: some View {

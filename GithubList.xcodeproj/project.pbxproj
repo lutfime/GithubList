@@ -20,7 +20,7 @@
 		C1C888FF292B1D7800FD832F /* UserListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C888FE292B1D7800FD832F /* UserListViewModel.swift */; };
 		C1C88903292B1F8F00FD832F /* RequestDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C88902292B1F8F00FD832F /* RequestDelegate.swift */; };
 		C1C88905292B282800FD832F /* UserCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C88904292B282800FD832F /* UserCellViewModel.swift */; };
-		C1C8890B292B323300FD832F /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C8890A292B323300FD832F /* ImageLoader.swift */; };
+		C1C8890B292B323300FD832F /* OldImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C8890A292B323300FD832F /* OldImageLoader.swift */; };
 		C1C8890E292B36FC00FD832F /* UIImageView+Load.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C8890D292B36FC00FD832F /* UIImageView+Load.swift */; };
 		C1C88910292B3E1F00FD832F /* UIImage+Invert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C8890F292B3E1F00FD832F /* UIImage+Invert.swift */; };
 		C1C88913292B619900FD832F /* LoadingIndicatorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1C88912292B619900FD832F /* LoadingIndicatorCell.swift */; };
@@ -92,7 +92,7 @@
 		C1C888FE292B1D7800FD832F /* UserListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewModel.swift; sourceTree = "<group>"; };
 		C1C88902292B1F8F00FD832F /* RequestDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDelegate.swift; sourceTree = "<group>"; };
 		C1C88904292B282800FD832F /* UserCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCellViewModel.swift; sourceTree = "<group>"; };
-		C1C8890A292B323300FD832F /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		C1C8890A292B323300FD832F /* OldImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldImageLoader.swift; sourceTree = "<group>"; };
 		C1C8890D292B36FC00FD832F /* UIImageView+Load.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Load.swift"; sourceTree = "<group>"; };
 		C1C8890F292B3E1F00FD832F /* UIImage+Invert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Invert.swift"; sourceTree = "<group>"; };
 		C1C88912292B619900FD832F /* LoadingIndicatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorCell.swift; sourceTree = "<group>"; };
@@ -197,7 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				C1C888F12925F2F100FD832F /* APILoader.swift */,
-				C1C8890A292B323300FD832F /* ImageLoader.swift */,
+				C1C8890A292B323300FD832F /* OldImageLoader.swift */,
 				C1DDC8B2292EE15400BB101F /* MockAPIClient.swift */,
 				C1FD891129EE0A3F00358E82 /* HTTPClient.swift */,
 				C1FD891329EE295000358E82 /* URLSessionHTTPClient.swift */,
@@ -544,7 +544,7 @@
 				C1C8890E292B36FC00FD832F /* UIImageView+Load.swift in Sources */,
 				C1FD893B29EE5F9100358E82 /* UserProfileLoaderComposite.swift in Sources */,
 				C1FD891429EE295000358E82 /* URLSessionHTTPClient.swift in Sources */,
-				C1C8890B292B323300FD832F /* ImageLoader.swift in Sources */,
+				C1C8890B292B323300FD832F /* OldImageLoader.swift in Sources */,
 				C1C88910292B3E1F00FD832F /* UIImage+Invert.swift in Sources */,
 				C1C888E42925EE6D00FD832F /* GithubUsers.xcdatamodeld in Sources */,
 				C1C888FF292B1D7800FD832F /* UserListViewModel.swift in Sources */,

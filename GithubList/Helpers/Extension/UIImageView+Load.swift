@@ -9,8 +9,8 @@ import UIKit
 
 extension UIImageView{
     func loadImage(for url: URL, invertedColor: Bool = false) {
-        ImageLoader.shared.cancelLoad(for: self)
-        ImageLoader.shared.loadImage(url, imageView: self) { result in
+        OldImageLoader.shared.cancelLoad(for: self)
+        OldImageLoader.shared.loadImage(url, imageView: self) { result in
             switch result {
             case .success(let image):
                 var theImage = image
