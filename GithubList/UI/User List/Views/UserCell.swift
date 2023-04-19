@@ -25,15 +25,7 @@ class UserCell: UICollectionViewCell {
         text.font = UIFont(name: ".AppleSystemUIFont", size: 15)
         return text
     }()
-//    var detailLabel : UILabel = {
-//        var text = UILabel()
-//        text.frame = CGRect(x: 87, y: 49.5, width: 182, height: 20)
-//        text.text = "Text"
-//        text.numberOfLines = 2
-//        text.textAlignment = .left
-//        text.font = UIFont(name: ".AppleSystemUIFont", size: 12)
-//        return text
-//    }()
+    
     var noteImageView : UIImageView = {
         var imageView = UIImageView()
         imageView.frame = CGRect(x: 236, y: 35.5, width: 28, height: 28)
@@ -67,12 +59,10 @@ class UserCell: UICollectionViewCell {
         
         addSubview(imageView)
         addSubview(nameLabel)
-//        addSubview(detailLabel)
         addSubview(noteImageView)
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-//        detailLabel.translatesAutoresizingMaskIntoConstraints = false
         noteImageView.translatesAutoresizingMaskIntoConstraints = false
         
         setupConstraints()
@@ -92,12 +82,7 @@ class UserCell: UICollectionViewCell {
             nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
         
         ])
-//        NSLayoutConstraint.activate([
-//            detailLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: -2),
-//            detailLabel.leadingAnchor.constraint(equalTo: nameLabel.leadingAnchor, constant: 0),
-//            detailLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-//
-//        ])
+        
         NSLayoutConstraint.activate([
             noteImageView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0),
             noteImageView.widthAnchor.constraint(equalToConstant: 20),
@@ -120,11 +105,21 @@ class UserCell: UICollectionViewCell {
             noteImageView.isHidden = true
         }
         if let avatarURL = user.avatarURL, let url = URL(string: avatarURL){
-            if indexPath.row % 4 == 3{
-                imageView.loadImage(for: url, invertedColor: true)
-            }else{
-                imageView.loadImage(for: url)
+            user.imageLoader.loadImage(url) {[weak self] result in
+                guard let self else {return}
+                
+                if let image = try? result.get(){
+                    if indexPath.row % 4 == 3{
+                        self.imageView.image = image.inverted()
+                    }else{
+                        self.imageView.image = image
+                    }
+                }
             }
         }
+    }
+    
+    func updateAvatarImage(_ image: UIImage){
+        imageView.image = image
     }
 }
