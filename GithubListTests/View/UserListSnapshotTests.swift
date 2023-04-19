@@ -26,7 +26,7 @@ class UserListSnapshotTests: XCTestCase {
         let bundle = Bundle(for: UserListViewController.self)
         let storyboard = UIStoryboard(name: "Main", bundle: bundle)
         let controller = storyboard.instantiateViewController(identifier: "userList") { coder in
-            let viewModel = UserListViewModel(loader: loader, imageLoader: {MockImageLoader()})
+            let viewModel = UserListViewModel(loader: loader, imageLoader: {RedImageLoader()})
             return UserListViewController(coder: coder, viewModel: viewModel)
         } as! UserListViewController
         
@@ -44,19 +44,29 @@ class UserListSnapshotTests: XCTestCase {
     func makeUsersWithoutNotes() -> [User]{
         let user = User()
         user.loginName = "a name"
-        user.avatarURL = "a url"
+        user.avatarURL = "https://aURL.com"
         
         let user2 = User()
         user2.loginName = "other name"
-        user2.avatarURL = "other url"
+        user2.avatarURL = "https://otherURL.com"
         
         let user3 = User()
         user3.loginName = "another name"
-        user3.avatarURL = "another url"
-        return [user, user2, user3]
+        user3.avatarURL = "https://anotherURL.com"
+        
+        let user4 = User()
+        user4.loginName = "another another name"
+        user4.avatarURL = "https://anotherAnotherURL.com"
+        return [user, user2, user3, user4]
     }
     
     func makeUsersWithNotes() ->  [User]{
         UsersLoaderStub.defaultUsers
+    }
+}
+
+private class RedImageLoader: ImageLoader{
+    func loadImage(_ url: URL, completion: @escaping (Result<UIImage, Error>) -> Void) {
+        completion(.success(UIImage.make(withColor: .red)))
     }
 }

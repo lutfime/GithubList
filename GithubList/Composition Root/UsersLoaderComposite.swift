@@ -7,6 +7,7 @@
 
 import Foundation
 
+///This class load local users result first, then combine with remote result when remote load success
 public class UsersLoaderComposite: UsersLoader{
     private let localLoader: UsersLoader
     private let remoteLoader: UsersLoader

@@ -80,8 +80,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             imageLoader: makeImageLoader,
             viewModel: viewModel) {[coreDataStack] user in
             let userProvider = UsersCoreDataRepository(coreDataStack: coreDataStack)
-            userProvider.createOrUpdate(user: user)
-            userProvider.coreDataStack.saveContext()
+            userProvider.save([user])
         }
         navigationController.pushViewController(profileView, animated: true)
     }

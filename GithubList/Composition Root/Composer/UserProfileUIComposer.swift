@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+///Compose UserProfile UI dependencies
 class UserProfileUIComposer{
     public static func userProfileComposedWith(
         loader: UserProfileLoader,

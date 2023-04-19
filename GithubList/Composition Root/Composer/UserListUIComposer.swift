@@ -7,6 +7,7 @@
 
 import UIKit
 
+///Compose UserList UI dependencies
 class UserListUIComposer{
     public static func userListComposedWith(
         loader: UsersLoader,

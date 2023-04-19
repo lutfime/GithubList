@@ -19,8 +19,7 @@ public class UserProfileLoaderCacheDecorator: UserProfileLoader{
     public func loadUserProfile(loginName: String, completion: @escaping (Result<User, Error>) -> Void) {
         loader.loadUserProfile(loginName: loginName) {[weak self] result in
             if let user = try? result.get(){
-                self?.dataProvider.createOrUpdate(user: user)
-                self?.dataProvider.coreDataStack.saveContext()
+                self?.dataProvider.save([user])
             }
             completion(result)
         }

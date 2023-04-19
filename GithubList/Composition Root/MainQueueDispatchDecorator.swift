@@ -7,6 +7,7 @@
 
 import UIKit
 
+///This class is used to dispatch from any thread to main thread
 final class MainQueueDispatchDecorator<T> {
     private let decoratee: T
     

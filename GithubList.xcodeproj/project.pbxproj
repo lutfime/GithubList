@@ -65,6 +65,7 @@
 		C1FD896329EFA87B00358E82 /* ImageLoaderFallbackComposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD896229EFA87B00358E82 /* ImageLoaderFallbackComposite.swift */; };
 		C1FD896529EFA8ED00358E82 /* ImageLoaderCacheDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD896429EFA8ED00358E82 /* ImageLoaderCacheDecorator.swift */; };
 		C1FD896629EFADB200358E82 /* MockAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DDC8B2292EE15400BB101F /* MockAPIClient.swift */; };
+		C1FD896829EFAE9000358E82 /* UIImage+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FD896729EFAE9000358E82 /* UIImage+TestHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +138,7 @@
 		C1FD896029EF9EE800358E82 /* RemoteImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImageLoader.swift; sourceTree = "<group>"; };
 		C1FD896229EFA87B00358E82 /* ImageLoaderFallbackComposite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderFallbackComposite.swift; sourceTree = "<group>"; };
 		C1FD896429EFA8ED00358E82 /* ImageLoaderCacheDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderCacheDecorator.swift; sourceTree = "<group>"; };
+		C1FD896729EFAE9000358E82 /* UIImage+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+TestHelpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,6 +293,7 @@
 				C1DDC8B4292EE18C00BB101F /* users.json */,
 				C1FD893029EE49D300358E82 /* UsersLoaderStub.swift */,
 				C1FD893229EE51F800358E82 /* SharedHelpers.swift */,
+				C1FD896729EFAE9000358E82 /* UIImage+TestHelpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -351,8 +354,8 @@
 		C1FD894E29EF899D00358E82 /* User List */ = {
 			isa = PBXGroup;
 			children = (
-				C1FD895229EF8A0300358E82 /* Presentation */,
 				C1FD895129EF89FC00358E82 /* Controller */,
+				C1FD895229EF8A0300358E82 /* Presentation */,
 				C1FD894F29EF89BD00358E82 /* Views */,
 			);
 			path = "User List";
@@ -583,6 +586,7 @@
 				C1FD894C29EF805300358E82 /* UsersCoreDataRepositoryTests.swift in Sources */,
 				C1FD892E29EE492B00358E82 /* UserListViewModelTests.swift in Sources */,
 				C1FD891E29EE2D2200358E82 /* UIViewController+Snapshot.swift in Sources */,
+				C1FD896829EFAE9000358E82 /* UIImage+TestHelpers.swift in Sources */,
 				C1DDC8A6292DE23A00BB101F /* GithubListTests.swift in Sources */,
 				C1FD896629EFADB200358E82 /* MockAPIClient.swift in Sources */,
 			);
