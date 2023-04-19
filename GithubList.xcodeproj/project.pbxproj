@@ -179,7 +179,6 @@
 				C1FD895729EF9C8200358E82 /* Feature */,
 				C1C88900292B1F7800FD832F /* Helpers */,
 				C1FD893629EE59AA00358E82 /* Composition Root */,
-				C1C888F3292615AB00FD832F /* Model */,
 				C1C888F02925F2B000FD832F /* API */,
 				C1DDC889292CF87E00BB101F /* Cache */,
 				C1FD894D29EF897F00358E82 /* UI */,
@@ -204,14 +203,6 @@
 				C1FD891329EE295000358E82 /* URLSessionHTTPClient.swift */,
 			);
 			path = API;
-			sourceTree = "<group>";
-		};
-		C1C888F3292615AB00FD832F /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				C1C888F4292615CE00FD832F /* User.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		C1C88900292B1F7800FD832F /* Helpers */ = {
@@ -421,6 +412,7 @@
 		C1FD895729EF9C8200358E82 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				C1C888F4292615CE00FD832F /* User.swift */,
 				C1FD895829EF9C9000358E82 /* UsersLoader.swift */,
 				C1FD895A29EF9C9900358E82 /* UserProfileLoader.swift */,
 			);
