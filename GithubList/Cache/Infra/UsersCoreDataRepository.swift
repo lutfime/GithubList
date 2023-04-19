@@ -82,6 +82,16 @@ public class UsersCoreDataRepository: UsersRepository {
         return nil
     }
     
+    public func getUser(with loginName: String) -> User? {
+        let fetchRequest: NSFetchRequest<UserManagedObject> = UserManagedObject.fetchRequest()
+        let predicate = NSPredicate(format: "%K == %@", #keyPath(UserManagedObject.loginName), loginName)
+        fetchRequest.predicate = predicate
+        if let user = try? fetchUsers(with: fetchRequest).first{
+            return user.toModel()
+        }
+        return nil
+    }
+    
     public func save(_ users: [User]) {
         for user in users {
             let managedUser = try? fetchOrCreateNewUser(user)
