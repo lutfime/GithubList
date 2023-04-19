@@ -13,18 +13,7 @@ class ProfileViewModel: ObservableObject {
     private let apiService: UserProfileLoader
     var onUserNeedSave: ((User) -> ())?
     
-    weak var delegate: RequestDelegate?
-    private var state: ViewState = .idle {
-        didSet {
-            if Thread.isMainThread{
-                self.delegate?.didUpdate(with: state)
-            }else{
-                DispatchQueue.main.sync {
-                    self.delegate?.didUpdate(with: state)
-                }
-            }
-        }
-    }
+    private var isLoading = false
     
     @Published var userProfileViewModel: UserProfileViewModel!
     private(set) var user: User!
@@ -34,25 +23,22 @@ class ProfileViewModel: ObservableObject {
     }
     
     func loadUserProfile(loginName: String){
-        switch state{
-        case .loading:
+        if isLoading{
             return
-        default:
-            ()
         }
         
-        //Load user profile
-        state = .loading
-        apiService.loadUserProfile(loginName: loginName) { result in
+        isLoading = true
+        apiService.loadUserProfile(loginName: loginName) {[weak self] result in
+            guard let self else {return}
+            
             switch result {
             case .success(let user):
                 self.user = user
-                self.userProfileViewModel = self.getUserProfileViewModel(user: user)
-
-                self.state = .success
-            case .failure(let error):
-                self.state = .error(error)
+                self.userProfileViewModel = user.toModel()
+            case .failure:
+                ()
             }
+            self.isLoading = false
         }
     }
     
@@ -63,10 +49,11 @@ class ProfileViewModel: ObservableObject {
         }
     }
     
-    // MARK:
-    
-    func getUserProfileViewModel(user: User) -> UserProfileViewModel {
-        let model = UserProfileViewModel(loginName:user.loginName, name: user.name, followerCount: user.followerCount ?? 0, followingCount: user.followingCount ?? 0, company: user.company, blog: user.blog, notes: user.notes)
+}
+
+private extension User{
+    func toModel() -> UserProfileViewModel {
+        let model = UserProfileViewModel(loginName:loginName, name: name, followerCount: followerCount ?? 0, followingCount: followingCount ?? 0, company: company, blog: blog, notes: notes)
         return model
     }
 }
