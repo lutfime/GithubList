@@ -186,6 +186,7 @@ public class UserListViewController: UIViewController, UICollectionViewDelegate,
     
     public func handleInternetConnectionRestored() {
         bottomInfoView.hideInfo()
+        viewModel.loadData()
     }
 
     // MARK: Search bar delegate
