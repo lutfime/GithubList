@@ -17,11 +17,51 @@ class UsersCoreDataRepositoryTests: XCTestCase{
         XCTAssertNil(users, "Expected no users on empty cache")
     }
     
+    func test_saveUser_deliversUserCorrectly() {
+        let sut = makeSUT()
+
+        let user = makeUser()
+        sut.save([user])
+        
+        let receivedUser = sut.getUsers()?.first
+        
+        XCTAssertNotNil(receivedUser, "Report should not be nil")
+        XCTAssertEqual(receivedUser!.notes, user.notes)
+        XCTAssertEqual(receivedUser!.loginName, user.loginName)
+    }
+    
+    func test_updateUser_deliversUserCorrectly() {
+        let sut = makeSUT()
+
+        let user = makeUser(notes: "a note")
+        sut.save([user])
+        
+        let savedUser = sut.getUsers()?.first
+        savedUser?.notes = "Updated notes"
+        
+        let receivedUser = sut.getUsers()?.first
+        XCTAssertEqual(receivedUser!.notes, "a note", "Expected received user not updated before save")
+        
+        sut.save([savedUser!])
+        let receivedUpdatedUser = sut.getUsers()?.first
+        XCTAssertEqual(receivedUpdatedUser!.notes, "Updated notes", "Expected received user to be updated with new notes")
+    }
+    
+    // MARK:  Helpers
+    
     func makeSUT() -> UsersRepository{
         let inMemoryStoreURL = URL(fileURLWithPath: "/dev/null")
         let coreDataStack = try! CoreDataStack(storeURL: inMemoryStoreURL)
         let sut = UsersCoreDataRepository(coreDataStack: coreDataStack)
         return sut
+    }
+    
+    func makeUser(notes: String = "test notes") -> User{
+        let user = User()
+        user.loginName = "testLogin"
+        user.id = 10
+        user.notes = notes
+        return user
     }
     
 }
