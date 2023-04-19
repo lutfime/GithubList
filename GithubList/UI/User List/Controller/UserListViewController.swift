@@ -164,17 +164,9 @@ public class UserListViewController: UIViewController, UICollectionViewDelegate,
     
     // MARK:  Collection View delegate
     
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let height = scrollView.frame.size.height
-        let contentYOffset = scrollView.contentOffset.y
-        let distanceFromBottom = scrollView.contentSize.height - contentYOffset
-
-        //Here, if we are at bottom collection view and is not being filtered, show loading indicator animation then load next page
-        if distanceFromBottom < height, !viewModel.isBeingFiltered() {
-            if !scrollView.isDragging{
-                loadingMoreIndicatorCell?.startIndicatorAnimation()
-                viewModel.loadData(nextPage: true)
-            }
+    public func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
+        if let view = view as? LoadingIndicatorCell, view == loadingMoreIndicatorCell{
+            viewModel.loadData(nextPage: true)
         }
     }
     
