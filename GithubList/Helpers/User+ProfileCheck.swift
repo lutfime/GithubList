@@ -10,7 +10,7 @@ import Foundation
 extension User{
     ///Check if profile data already available in the current user
     func isProfileAvailable() -> Bool{
-        if name != nil || email != nil || notes != nil{
+        if name != nil || email != nil{
             return true
         }
         return false
