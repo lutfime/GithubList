@@ -1,7 +1,7 @@
 # GithubList
 An example app that utilizes Github users API.
 
-Recently, I've refactored the source code to use clean architecture. You can see the old implementation before refactoring here:
+At 4/23, I've refactored the source code to use clean architecture. You can see the old implementation before refactoring here:
 https://github.com/lutfime/GithubList/tree/633937225f3e5def9ceede6d152f6fcf57058e8e
 
 The commits has been done in smaller scale with description, you can follow the refactoring processes here. 
