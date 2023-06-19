@@ -25,7 +25,12 @@ There are multiple improvements still can be done in the future
 - Add acceptance tests that test the overall behaviour of the app. For example test `when offline app load and render data from cache`
 - Separate `User` object to `User` and `UserProfile` so each `UserList` and `UserProfile` screens use either one only. By separating model objects, we can make the properties immutable which are more type safe.
 
+# App Architecture
 
+![GithubList App Architecture](https://github.com/lutfime/GithubList/assets/2703248/63e14af2-2801-4846-8f2f-61883287f467)
 
+Note: Composition root is not shown in the diagram as composition root uses have dependencies to most modules because composition root is a centralized place to compose the dependencies.
+
+# Preview
 
 ![github list](https://user-images.githubusercontent.com/2703248/203711026-9a19960c-e50c-4696-bd58-93ce8322156c.gif)
